@@ -49,7 +49,7 @@ exports.getCustomerByID		= function( req, res ) {
 	
 		curPage = {}
 		curPage['current'] = 'mentor';
-	
+		
 		res.render('mentor', { user: req.user, display: newUser, reqPage:curPage  });
 	})
 };
@@ -72,6 +72,14 @@ exports.getInvoiceByID		= function( req, res ){
 	res.send( 200 );
 	
 };
+
+exports.getForms			= function( req, res ){
+	
+	res.render( 'forms' );
+	
+};
+
+
 
 exports.getTokens	= function(req, res) {
 	return db.tokenModel.find(function(err, tokens) {

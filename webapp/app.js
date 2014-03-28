@@ -73,9 +73,6 @@ app.get('/construction',	function( req, res ){ res.render('construction'); });
 
 
 // routes that help to authenticate a user
-
-
-
 app.get('/login',	uRoutes.getLogin);
 app.post('/login',	passport.authenticate('local', {
 	failureRedirect: '/login' }),
@@ -84,7 +81,7 @@ app.post('/login',	passport.authenticate('local', {
 
 
 // routes that REQUIRE authentication
-
+app.get('/forms',			uRoutes.getForms );
 app.get('/invoice/:id',		checkAuth, uRoutes.getInvoiceByID );
 
 app.get('/logout', function(req, res){
