@@ -22,10 +22,6 @@ app.set('views', __dirname + '/views');
 
 // use ejs for html
 app.engine('html', engines.ejs);
-app.engine('ejs', engines.ejs);
-// use jade for jade
-app.engine('jade', engines.jade);
-// .html as default view extension
 app.set('view engine', 'html');
 
 // development only
@@ -65,93 +61,31 @@ function checkAuth(req, res, next){
 }
 
 
-// User pages
+// routes that DO NOT require authentication
+app.get('/',				function( req, res ){ res.render('landing') });
+app.get('/signup',			function( req, res ){ res.render('signup-rotate') });
+
+app.get('/terms',			function( req, res ){ res.render('404'); });
+
+app.get('/contact-us',		function( req, res ){ res.render('contact-us') });
+app.get('/about-us',		function( req, res ){ res.render('about-us') });
+app.get('/construction',	function( req, res ){ res.render('construction'); });
+
+
+// routes that help to authenticate a user
+
+
+
 app.get('/login',	uRoutes.getLogin);
-app.post('/login', passport.authenticate('local', {
+app.post('/login',	passport.authenticate('local', {
 	failureRedirect: '/login' }),
 	function(req, res) { res.redirect('/');
 });
 
 
-app.get('/public/mentors', uRoutes.getPublicMentors );
+// routes that REQUIRE authentication
 
-
-// routes that require authentication
-app.get('/',						pass.ensureAuthenticated, uRoutes.getMentors);
-app.get('/mentors', 				pass.ensureAuthenticated, uRoutes.getMentors);
-app.post('/invite',					pass.ensureAuthenticated, mail.invite, function(req,res){ res.redirect('/mentors')} );
-app.post('/reinvite',				pass.ensureAuthenticated, mail.invite, function(req,res){ res.redirect('/dashboard')} );
-app.get('/mentors/:id',				pass.ensureAuthenticated, uRoutes.getMentorById);
-app.post('/mentors/:id/destroy',	pass.ensureAuthenticated, uRoutes.destroyMentorById);
-app.get('/find',					pass.ensureAuthenticated, uRoutes.getFind);
-app.get('/find/users.json',			pass.ensureAuthenticated, uRoutes.getFindUsers);
-app.post('/search',					pass.ensureAuthenticated, uRoutes.postSearch);
-app.get('/dashboard', 				pass.ensureAuthenticated, uRoutes.getDashboard);
-
-app.get('/venture',					function(req, res) { res.render('404') });
-app.get('/ventures',				function(req, res) { res.render('404') });
-app.get('/entrepreneur',			function(req, res) { res.render('404') });
-app.get('/entrepreneurs',			function(req, res) { res.render('404') });
-
-app.get('/tokens', 	pass.ensureAuthenticated, uRoutes.getTokens);
-app.get('/users', 	pass.ensureAuthenticated, uRoutes.getUsers);
-
-app.post('/mentors/:id/ventureAdd',		pass.ensureAuthenticated, uRoutes.addVentureMentorProfile);
-app.post('/mentors/:id/ventureRemove',	pass.ensureAuthenticated, uRoutes.removeVentureMentorProfile);
-
-app.post('/mentors/:id/favoriteAdd',	pass.ensureAuthenticated, uRoutes.addFavoriteMentorProfile);
-app.post('/mentors/:id/favoriteRemove',	pass.ensureAuthenticated, uRoutes.removeFavoriteMentorProfile);
-
-app.post('/welcomed',					pass.ensureAuthenticated, uRoutes.welcomeUser);
-app.post('/modifyMentorDetails',		pass.ensureAuthenticated, uRoutes.modifyMentorDetails);
-
-app.post('/download/mentors',			pass.ensureAuthenticated, uRoutes.downloadMentors );
-
-app.get("/verify/:token", function (req, res, next) {
-
-	var token = req.params.token;
-	console.log( token )
-	
-	pass.verifyToken(token, function(err) {
-        if (err) return res.redirect("/401");
-		
-		req.session.token	= 'valid';
-		req.session.tokenid	= token;
-		
-		// res.render('admin/mentors', { user: req.user, users: users });
-		res.redirect('/auth/linkedin');
-	}
-)});
-
-// GET /auth/linkedin
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request.  The first step in LinkedIn authentication will involve
-//   redirecting the user to linkedin.com.  After authorization, LinkedIn will
-//   redirect the user back to this application at /auth/linkedin/callback
-
-// The request will be redirected to LinkedIn for authentication, so this
-// function will not be called.
-
-app.get('/auth/linkedin', passport.authenticate('linkedin'), function(req, res){ });
-
-
-// GET /auth/linkedin/callback
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request.  If authentication fails, the user will be redirected back to the
-//   login page.  Otherwise, the primary route function function will be called
-app.get('/auth/linkedin/callback', passport.authenticate('linkedin',
-	{ failureRedirect: '/' }),
-	function(req, res) {
-		res.redirect('/');
-	});
-
-
-
-
-
-
-
-
+app.get('/invoice/:id',		checkAuth, uRoutes.getInvoiceByID );
 
 app.get('/logout', function(req, res){
 	req.session.destroy();
@@ -159,13 +93,12 @@ app.get('/logout', function(req, res){
 	res.redirect('/');
 });
 
-// construction page
-app.get('/construction', function(req, res){ res.render('construction'); });
 
-app.get('/401', function(req, res){ res.render('401'); });
+// routes for errors
+app.get('/401',		function(req, res){ res.render('401'); });
 
 // these must be the last routes to work properly
-app.get('*', function(req, res){ res.render('404'); });
+app.get('*',		function(req, res){ res.render('404'); });
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

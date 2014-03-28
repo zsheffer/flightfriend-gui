@@ -9,7 +9,7 @@ var mongoose			= require('mongoose'),
 var uristring = 
   process.env.MONGOLAB_URI || 
   process.env.MONGOHQ_URL || 
-  'mongodb://localhost/test';
+  'mongodb://localhost/flightfriend';
 
 var mongoOptions = { db: { safe: true }};
 
@@ -41,29 +41,6 @@ var userSchema = new Schema({
 			salt:				{ type: String, default: '' },
 			authToken:			{ type: String, default: '' }
 		},
-		linkedin : {
-			id:						{ type: String, default: '' },
-			firstName:				{ type: String, default: '' },
-			lastName:				{ type: String, default: '' },
-			joined:					{ type: String, default: '' },
-			email:					{ type: String, default: '' },
-			skype:					{ type: String, default: '' },
-			phone:					{ type: String, default: '' },
-			address:				{ type: String, default: '' },
-			gender:					{ type: String, default: '' },
-			ethnicity:				{ type: String, default: '' },
-			industry:				{ type: String, default: '' },
-			location:				{ type: String, default: '' },
-			summary:				{ type: String, default: '' },
-			headline:				{ type: String, default: '' },
-			educations:				{ type: Array, default: [] },
-			current_positions:		{ type: Array, default: [] },
-			past_positions:			{ type: Array, default: [] },
-			skills:					{ type: Array, default: [] },
-			assigned_ventures:		{ type: Array, default: [] },
-			linkedInlastModified:	{ type: String, default: '' },
-			linkedInPictureURL:		{ type: String, default: '' }
-		}
 	},
 	profile			: {
 		firstName:				{ type: String, default: '' },
