@@ -1,0 +1,30 @@
+{
+	"name"		: "flight-friend",
+	"version"	: "0.0.1",
+	"private"	: true,
+	"scripts"	: {
+		"start"			: "node app.js"
+	},
+	"dependencies" : {
+		"express"				: "3.2.0",		
+		"passport"				: "~0.1.17",
+		"passport-local"		: "~0.1.6", 
+		"passport-google-oauth" : "*",
+		"passport-facebook"		: "*",
+		"passport-twitter"		: "*",
+		"mongoose"				: "~3.5.5",
+		"bcrypt"				: "~0.7.3",
+		"ejs"					: "*",
+		"node-uuid"				: "*",
+		"jade"					: "0.27.7",
+		"stylus"				: "0.31.0",
+		"consolidate"			: "*",
+		"grunt"					: "~0.4.1",
+		"connect-flash"			: "~0.1.1",
+		"mandrill-api"			: "*"
+	},
+	"engines" : {
+		"node"			: "0.10.24",
+		"npm"			: "1.1.65"
+	}
+}
