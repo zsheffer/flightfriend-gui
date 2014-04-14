@@ -9,6 +9,20 @@
 *:focus {
   outline: 0; }
 
+
+
+.f-green {
+	color: #5cb85c;
+}
+
+.f-red {
+	color: #d9534f;
+}
+
+
+
+
+
 .button {
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -2484,6 +2498,27 @@ a:focus, button:focus {
       font-weight: 300;
       font-size: 17px;
       color: #757575; }
+        
+  #home2 #second-option .feature .fa-check {
+	position: absolute;
+	/* margin: 0 auto; */
+	font-size: 190px;
+	font-weight: 100;
+	right: 0px;
+	top: -53px;
+	width: 100%;
+	z-index: -1;
+  }
+        
+  #home2 #second-option .feature .fa-times {
+	position: absolute;
+	/* margin: 0 auto; */
+	font-size: 140px;
+	font-weight: 100;
+	right: 0px;
+	top: -22px;
+	width: 100%;
+  }
         
   @media (max-width: 991px) {
     #home2 #second-option {
