@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />	
+	<title>FlightFriend</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- stylesheets -->
+	<link rel="stylesheet" type="text/css" href="css/compiled/theme.css">
+	<link rel="stylesheet" type="text/css" href="css/vendor/animate.css">
+	<link rel="stylesheet" type="text/css" href="css/vendor/font-awesome.min.css">
+
+	<!-- javascript -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<script src="js/theme.js"></script>
+
+	<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body id="home2">
+
+	<%- include partials/header.html %>
+
+	<div id="hero">
+		<a class="slide-nav prev" href="#">Prev</a>
+		<a class="slide-nav next" href="#">Next</a>
+		<nav>
+			<a class="active" href="#"></a>
+			<a href="#"></a>
+			<a href="#"></a>
+		</nav>
+		<div class="slides">
+		
+			<div class="slide first active">
+				<div class="bg"></div>
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6 info">
+							<h1 class="hero-text">
+								Healing your travel hurt.
+							</h1>
+							<p>
+								Lost bag? Delayed or cancelled flights? Denied boarding? We can help you get the compensation—averaging $200—that you deserve.
+							</p>
+							<div class="cta">
+								<a href="/signup" class="button-outline">
+									TRY IT FREE
+									<i class="fa fa-chevron-right"></i>
+								</a>
+							</div>
+						</div>
+						<div class="col-sm-6 hidden-xs mobiles">
+							<img src="images/devices3.png" class="animated fadeInLeft img-responsive" alt="devices" />
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="slide second">
+				<div class="bg"></div>
+				<div class="container">
+					<h1 class="hero-text">Get what you deserve for your airline woes.</h1>
+					<p class="sub-text">
+						You’re eligible for up to $3600 in compensation—just submit a quick, seven-question claim, and we’ll take care of the rest.
+					</p>
+					<div class="video-wrapper">
+						<div class="video animated fadeInUp">
+							<img src="images/player.png" id="demo-player" alt="videoplayer" />
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="slide third">
+				<div class="bg"></div>
+				<div class="container">
+					<h1 class="hero-text animated fadeInLeft">
+						Terrible travel experience? Tell us about it.
+					</h1>
+					<p class="sub-text animated fadeInLeft">
+						Give us the skinny on what happened, and we’ll work to get you up an average of $200 in compensation.
+					</p>
+					<div class="cta animated fadeInRight">
+						<a href="/features" class="button-outline">See the features</a>
+						<a href="/signup" class="button">Sign up free</a>
+					</div>
+				</div>
+			</div>
+<!--
+
+			<div class="slide fourth">
+				<div class="bg"></div>
+				<div class="container">
+					<h1 class="hero-text animated fadeInLeft">
+						Track all your claims in real time
+					</h1>
+					<p class="sub-text animated fadeInLeft">
+						Using our free service you can check out all the features that we offer, no contracts or credit card required.
+					</p>
+					<div class="cta animated fadeInRight">
+						<a href="/features" class="button-outline">See the features</a>
+						<a href="/signup" class="button">Sign up free</a>
+					</div>
+				</div>
+			</div>
+-->
+			
+		</div>
+
+<!--
+		<div class="video-modal">
+			<div class="wrap">
+				<iframe src="http://player.vimeo.com/video/22439234" width="620" height="350" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			</div>
+		</div>
+-->
+	</div>
+	
+	<div id="second-option">
+		<div class="container">
+			<div class="row header">
+				<div class="col-md-12">
+					<h2>Who's Eligible</h2>
+					<p>Let's have a broad explanation here</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 feature">
+					<img src="images/circle-icons/one-color/hourglass.png" alt="hourglass" />
+					<i class="fa fa-check f-green"></i>
+					<strong>Delays</strong>
+					<p>Over 1 in 5 travelers each day is delayed. If it happens to you, we can help you get compensation for your extra expenses.</p>
+				</div>
+				<div class="col-md-4 feature">
+					<img src="images/circle-icons/one-color/calendar.png" alt="cancellations" />
+					<i class="fa fa-check f-green"></i>
+					<strong>Cancellations</strong>
+					<p>You’ve just received word that your flight to that important meeting or family event was cancelled—and that it was the airline’s fault. We can help make those “mechanical delays” feel a lot better.</p>
+				</div>
+				<div class="col-md-4 feature">
+					<img src="images/circle-icons/one-color/briefcase.png" alt="lost bags" />
+					<i class="fa fa-check f-green"></i>
+					<strong>Lost Bags</strong>
+					<p>It’s the worst feeling to be standing at an empty bag belt after all the other passengers have long gone. The airline lost your bag—but they legally owe you up to $3600 in compensation. We can help you get it.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 feature">
+					<img src="images/circle-icons/one-color/denied.png" alt="denied" />
+					<i class="fa fa-check f-green"></i>
+					<strong>Denied Boarding</strong>
+					<p>The airline overbooked your flight—and you’re the one left standing outside the gate. The law ensures you can get up to the value of your original ticket for your delayed plans. We’ll do all the hard work to make sure you get what you deserve.</p>
+				</div>
+				<div class="col-md-4 feature">
+					<i class="fa fa-check f-green"></i>
+					<img src="images/circle-icons/one-color/weather.png" alt="weather" />
+					<strong>Weather</strong>
+					<p>While we can’t stop thunderstorms in Dallas or snow in Chicago, we may be able to help get you some compensation if airlines did not deal with the delays correctly. Please fill out the short question form to help us understand your situation better!</p>
+				</div>
+				<div class="col-md-4 feature">
+					<i class="fa fa-times f-red"></i>
+					<img src="images/circle-icons/one-color/caution.png" alt="bad experience" />
+					<strong>Bad Inflight Experience</strong>
+					<p>Dirty planes. No service. Surly employees. Flying can be terrible—but airlines often provide compensation only when they are taken to court. See our <a href="http://blog.flight-friend.com" target="_blank">blog</a> for more information on what you can do, and how we can help.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="cta">
+		<a href="/signup">
+			Check If You Are Eligable
+		</a>
+	</div>
+	
+	<div id="process">
+		<div class="container">
+			<div class="row header">
+				<div class="col-md-12">
+					<h2>The Process</h2>
+					<p>Let's have a broad explanation here</p>
+				</div>
+			</div>
+			<div class="row" style="position: relative;">
+				<div class="col-md-3 feature">
+					<strong>1. File a Claim</strong>
+					<img src="images/circle-icons/full-color/browser.png" alt="hourglass" />
+				</div>
+				<div class="col-md-3 feature">
+					<strong>2. Get Verified</strong>
+					<img src="images/circle-icons/full-color/key.png" alt="hourglass" />
+				</div>
+				<div class="col-md-3 feature">
+					<strong>3. We Do the Messy Work</strong>
+					<img src="images/circle-icons/full-color/windy.png" alt="cancellations" />
+				</div>
+				<div class="col-md-3 feature">
+					<strong>4. And You Get Paid</strong>
+					<img src="images/circle-icons/full-color/money.png" alt="lost bags" />
+				</div>
+				<div class="process-line"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="cta">
+		<a href="/signup">
+			File A Claim
+		</a>
+	</div>
+
+	<div id="pricing">
+		<div class="container">
+			<div class="row header">
+				<h3>Free trial. No contract. Cancel when you want.</h3>
+				<p>All plans include a 7-day free trial</p>
+			</div>
+			<div class="row charts">
+				<div class="col-md-4">
+					<div class="chart first">
+						<div class="quantity">
+							<span class="dollar">$</span>
+							<span class="price">29</span>
+							<span class="period">/month</span>
+						</div>
+						<div class="plan-name">Freelance</div>
+						<div class="specs">
+							<div class="spec">
+								<span class="variable">5</span>
+								team members
+							</div>
+							<div class="spec">
+								<span class="variable">Digital</span>
+								recurring billing
+							</div>
+							<div class="spec">
+								<span class="variable">Virtual</span>
+								online terminal
+							</div>
+							<div class="spec">
+								<span class="variable">10</span>
+								total products
+							</div>
+							<div class="spec">
+								<span class="variable">1.0%</span>
+								Transaction fee
+							</div>
+						</div>
+						<a class="btn-signup button-clear" href="signup.html">
+							<span>Start free trial</span>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="chart featured">
+						<div class="popular">Most popular</div>
+						<div class="quantity">
+							<span class="dollar">$</span>
+							<span class="price">79</span>
+							<span class="period">/month</span>
+						</div>
+						<div class="plan-name">Profesional</div>
+						<div class="specs">
+							<div class="spec">
+								<span class="variable">15</span>
+								team members
+							</div>
+							<div class="spec">
+								<span class="variable">Digital</span>
+								recurring billing
+							</div>
+							<div class="spec">
+								<span class="variable">Virtual</span>
+								online terminal
+							</div>
+							<div class="spec">
+								<span class="variable">15</span>
+								total products
+							</div>
+							<div class="spec">
+								<span class="variable">0.5%</span>
+								Transaction fee
+							</div>
+						</div>
+						<a class="btn-signup button-clear" href="signup.html">
+							<span>Start free trial</span>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="chart last">
+						<div class="quantity">
+							<span class="dollar">$</span>
+							<span class="price">119</span>
+							<span class="period">/month</span>
+						</div>
+						<div class="plan-name">Premium</div>
+						<div class="specs">
+							<div class="spec">
+								<span class="variable">Unlimited</span>
+								team members
+							</div>
+							<div class="spec">
+								<span class="variable">Digital</span>
+								recurring billing
+							</div>
+							<div class="spec">
+								<span class="variable">Virtual</span>
+								online terminal
+							</div>
+							<div class="spec">
+								<span class="variable">25</span>
+								total products
+							</div>
+							<div class="spec">
+								<span class="variable">No</span>
+								Transaction fee
+							</div>
+						</div>
+						<a class="btn-signup button-clear" href="signup.html">
+							<span>Start free trial</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--
+	<div id="features-hover">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 images">
+					<img src="images/services5.png" class="img-responsive active" alt="services1" />
+					<img src="images/services6.png" class="img-responsive" alt="services2" />
+					<img src="images/services7.png" class="img-responsive" alt="services3" />
+				</div>
+			</div>
+			<div class="row features">
+				<div class="col-md-4">
+					<div class="feature active">
+						<strong>Your own dashboard</strong>
+						<p>
+							You can work with international customers right out of the box while you can keep staying in your country.
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="feature">
+						<strong>Showcase your landing page</strong>
+						<p>
+							You can work with international customers right out of the box while you can keep staying in your country.
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="feature">
+						<strong>Offer pricing plans</strong>
+						<p>
+							You can work with international customers right out of the box while you can keep staying in your country.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+-->
+
+	<div id="testimonials">
+		<div class="container">
+			<div class="row header">
+				<div class="col-md-12">
+					<h3>Trusted by people around the world:</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="testimonial pull-right">
+						<div class="quote">
+							I am just quoting some stuff but I am seriously happy about this product. Has a lot of powerful
+							features and is so easy to set up, I could stay customizing it day and night, it's just so much fun!
+							<div class="arrow-down">
+				                <div class="arrow"></div>
+				                <div class="arrow-border"></div>
+				            </div>
+						</div>
+						<div class="author">
+							<img src="images/testimonials/testimonial1.jpg" class="pic" alt="testimonial1" />
+							<div class="name">Erick</div>
+							<div class="company">3/24/2014</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="testimonial">
+						<div class="quote">
+							This thing is one of those tools that everybody should be using. I really like it and with this ease to use, you can kickstart your projects and apps and just focus on your business!
+							<div class="arrow-down">
+				                <div class="arrow"></div>
+				                <div class="arrow-border"></div>
+				            </div>
+						</div>
+						<div class="author">
+							<img src="images/testimonials/testimonial2.jpg" class="pic" alt="testimonial2" />
+							<div class="name">Joe</div>
+							<div class="company">2/19/2014</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="cta">
+		<a href="/signup">
+			Sign up for free
+		</a>
+	</div>
+	
+	<%- include partials/footer-alt.html %>
+	<%- include partials/zendesk.js %>
+	
+	<script type="text/javascript">
+		$(function () {
+			var $navDots = $("#hero nav a")
+			var $next = $(".slide-nav.next");
+			var $prev = $(".slide-nav.prev");
+			var $slides = $("#hero .slides .slide");
+			var actualIndex = 0;
+			var swiping = false;
+			var interval;
+
+			$navDots.click(function (e) {
+				e.preventDefault();
+				if (swiping) { return; }
+				swiping = true;
+
+				actualIndex = $navDots.index(this);
+				updateSlides(actualIndex);
+			});
+
+			$next.click(function (e) {
+				e.preventDefault();
+				if (swiping) { return; }
+				swiping = true;
+
+				clearInterval(interval);
+				interval = null;
+
+				actualIndex++;
+				if (actualIndex >= $slides.length) {
+					actualIndex = 0;
+				}
+
+				updateSlides(actualIndex);
+			});
+
+			$prev.click(function (e) {
+				e.preventDefault();
+				if (swiping) { return; }
+				swiping = true;
+
+				clearInterval(interval);
+				interval = null;
+
+				actualIndex--;
+				if (actualIndex < 0) {
+					actualIndex = $slides.length - 1;
+				}
+
+				updateSlides(actualIndex);
+			});
+
+			function updateSlides(index) {
+				// update nav dots
+				$navDots.removeClass("active");
+				$navDots.eq(index).addClass("active");
+
+				// update slides
+				var $activeSlide = $("#hero .slide.active");
+				var $nextSlide = $slides.eq(index);
+
+				$activeSlide.fadeOut();
+				$nextSlide.addClass("next").fadeIn();
+				
+				setTimeout(function () {
+					$slides.removeClass("next").removeClass("active");
+					$nextSlide.addClass("active");
+					$activeSlide.removeAttr('style');
+					swiping = false;
+				}, 1000);
+			}
+
+
+			interval = setInterval(function () {
+				if (swiping) { return; }
+				swiping = true;
+
+				actualIndex++;
+				if (actualIndex >= $slides.length) {
+					actualIndex = 0;
+				}
+
+				updateSlides(actualIndex);
+			}, 5000);
+
+			// demo player
+			var $videoModal = $(".video-modal");
+			$("#demo-player").click(function () {
+				$videoModal.toggleClass("active");
+				clearInterval(interval);
+				interval = null;
+			});
+			$videoModal.click(function () {
+				$videoModal.removeClass("active");
+				setTimeout(function () {
+					$videoModal.find(".wrap").html('<iframe src="http://player.vimeo.com/video/22439234" width="620" height="350" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
+				}, 1000);
+			})
+			$videoModal.find(".wrap").click(function (e) {
+				e.stopPropagation();
+			});
+		});
+	</script>
+	
+</body>
+</html>
