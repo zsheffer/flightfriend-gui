@@ -13,7 +13,7 @@
 		"passport-facebook"		: "*",
 		"passport-twitter"		: "*",
 		"mongoose"				: "~3.5.5",
-		"bcrypt"				: "~0.7.3",
+		"bcrypt"				: "*",
 		"ejs"					: "*",
 		"node-uuid"				: "*",
 		"jade"					: "0.27.7",
