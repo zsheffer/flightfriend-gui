@@ -14,6 +14,11 @@ mandrill transactional email service:
 e-mail	: yourflightfriend@gmail.com
 pass	: Field3project
 
+mailchimp:
+e-email	: yourflightfriend@gmail.com
+user	: yourflightfriend
+pass	: Field3project
+
 zendesk customer support:
 e-mail	: yourflightfriend@gmail.com
 pass	: Field3project

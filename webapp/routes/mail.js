@@ -1,9 +1,7 @@
 
-var passport		= require('passport'),
-	pass			= require("../config/pass"),
-	path			= require('path');
+var path			= require('path');
 
-var uuid	= require('node-uuid')
+var shortId = require('shortid'),
 	db		= require('../config/dbschema');
 // 
 // mandrill docs:
@@ -12,17 +10,18 @@ var uuid	= require('node-uuid')
 //
 
 var mandrill		= require('mandrill-api/mandrill'),
-	MANDRILL_KEY	= 'sZkyfUitVLtronkk3wZjvA',
+	MANDRILL_KEY	= '-qSfV1ML5H8LluD360i3uA',
 	mandrill_client	= new mandrill.Mandrill( MANDRILL_KEY );
 	
 var mandrillTemplates = {};
 	
-	mandrillTemplates['invite'] = 'nu-mentors-invitation';
+	mandrillTemplates['claim-client']	= 'claim-customer';		// self explanatory
+	mandrillTemplates['claim-support']	= 'claim-support';		// self explanatory
 
 
 // ===
 
-exports.invite = function( req, res, done ){
+exports.invite		= function( req, res, done ){
 
 	var body			= req.body,
 		relationship	= req.user.profile.organization,
@@ -117,4 +116,211 @@ exports.invite = function( req, res, done ){
 		    
         }
     });	
-}
+};
+
+exports.submitClaim	= function( _email, _claim ){
+
+	var newClaim		= new db.claimModel();
+	
+	var _claimID		= shortId.generate();
+	newClaim.claimID	= _claimID;
+	newClaim.data		= _claim;
+	
+	newClaim.save(function(err) {
+		if( err ){
+			console.log( 'Error: ' + err.message );
+		} else {
+		
+			claimEmail_client( _email, _claimID );
+			claimEmail_support( _email, _claim, _claimID );
+	
+		}
+	});	
+	
+};
+
+function claimEmail_client( _email, _claimID ){
+	
+	var template_name = mandrillTemplates['claim-client'];
+	var template_content = [{
+	        "name"		: "example name",
+	        "content"	: "example content"
+	    }];
+	var message = {
+	    "subject"		: "[Flight-Friend Claim Submitted]",
+	    "from_email"	: "contact@flight-friend.com",
+	    "from_name"		: "Your Flight Friend",
+	    "to": [{
+	            "email"	: _email,
+	            "name"	: "Our Flight Friend",
+	            "type"	: "to"
+	        }],
+	    "headers": {
+	        "Reply-To": "contact@flight-friend.com"
+	    },
+	    "important"		: false,
+	    "track_opens"	: null,
+	    "track_clicks"	: null,
+	    "auto_text"		: null,
+	    "auto_html"		: null,
+	    "inline_css"	: null,
+	    "url_strip_qs"	: null,
+	    "preserve_recipients": null,
+	    "view_content_link"	: null,
+	    "tracking_domain"	: null,
+	    "signing_domain"	: null,
+	    "return_path_domain": null,
+	    "merge": true,
+	    "merge_vars": [{
+	    	"rcpt": _email,
+	    	"vars": [{
+	    		"name" : "claimID",
+	    		"content" : _claimID
+	    	}]
+	    }]
+	};
+		
+	var async = false;
+	var ip_pool = "Main Pool";
+	
+	sendViaMandrill( template_name, template_content, message, async, ip_pool );
+	
+};
+
+function claimEmail_support( _email, _claim, _claimID ){
+	
+	var template_name = mandrillTemplates['claim-support'];
+	var template_content = [{
+	        "name"		: "example name",
+	        "content"	: "example content"
+	    }];
+	var message = {
+	    "subject"		: "[Flight-Friend Claim Submitted]",
+	    "from_email"	: _email,
+	    "from_name"		: "Our New Flight Friend",
+	    "to": [{
+	            "email"	: "contact@flight-friend.com",
+	            "name"	: "Flight Friend",
+	            "type"	: "to"
+	        }],
+	    "headers": {
+	        "Reply-To": _email
+	    },
+	    "important"		: false,
+	    "track_opens"	: null,
+	    "track_clicks"	: null,
+	    "auto_text"		: null,
+	    "auto_html"		: null,
+	    "inline_css"	: null,
+	    "url_strip_qs"	: null,
+	    "preserve_recipients": null,
+	    "view_content_link"	: null,
+	    "tracking_domain"	: null,
+	    "signing_domain"	: null,
+	    "return_path_domain": null,
+	    "merge": true,
+	    "merge_vars": [{
+	    	"rcpt": "contact@flight-friend.com",
+	    	"vars": [{
+	    		"name" : "email",
+	    		"content" : _email
+	    	},{
+	    		"name" : "claimID",
+	    		"content" : _claimID
+	    	},{
+	    		"name" : "YOURFIRSTNAME",
+	    		"content" : _claim['yourFirstName']
+	    	},{
+	    		"name" : "YOURLASTNAME",
+	    		"content" : _claim['yourLastName']
+	    	},{
+	    		"name" : "THEIRFIRSTNAME",
+	    		"content" : _claim['theirFirstName']
+	    	},{
+	    		"name" : "THEIRLASTNAME",
+	    		"content" : _claim['theirLastName']
+	    	},{
+	    		"name" : "RELATIONSHIP",
+	    		"content" : _claim['yourRelationship']
+	    	},{
+	    		"name" : "AIRLINECODE",
+	    		"content" : _claim['airlinecode']
+	    	},{
+	    		"name" : "FLIGHTNUMBER",
+	    		"content" : _claim['flightnumber']
+	    	},{
+	    		"name" : "AIRLINECODEOTHER",
+	    		"content" : _claim['airlinecodeother']
+	    	},{
+	    		"name" : "ITINERARY",
+	    		"content" : _claim['flightitinerary']
+	    	},{
+	    		"name" : "COMPENSATIONBEFORE",
+	    		"content" : _claim['Submitted-request-for-compensation-before']
+	    	},{
+	    		"name" : "STREET",
+	    		"content" : _claim['street']
+	    	},{
+	    		"name" : "CITY",
+	    		"content" : _claim['city']
+	    	},{
+	    		"name" : "STATE",
+	    		"content" : _claim['state']
+	    	},{
+	    		"name" : "ZIP",
+	    		"content" : _claim['zip']
+	    	},{
+	    		"name" : "EMAIL",
+	    		"content" : _claim['email']
+	    	},{
+	    		"name" : "PHONE",
+	    		"content" : _claim['phone']
+	    	},{
+	    		"name" : "STATEANDLOCAL",
+	    		"content" : _claim['StateAndLocal']
+	    	},{
+	    		"name" : "FEDERAL",
+	    		"content" : _claim['Federal']
+	    	},{
+	    		"name" : "INTERNATIONAL",
+	    		"content" : _claim['International']
+	    	},{
+	    		"name" : "HIDDEN",
+	    		"content" : _claim['hiddenDetails']
+	    	}]
+	    }]
+	};
+		
+	var async = false;
+	var ip_pool = "Main Pool";
+	
+	sendViaMandrill( template_name, template_content, message, async, ip_pool );
+	
+};
+
+function sendViaMandrill( _template_name, _template_content, _message, _async, _ip_pool ){
+
+	mandrill_client.messages.sendTemplate({
+		"template_name"		: _template_name,
+		"template_content"	: _template_content,
+		"message"			: _message,
+		"async"				: _async,
+		"ip_pool"			: _ip_pool
+	}, 
+		function(result) {
+		    /*
+		    [{
+		            "email": "recipient.email@example.com",
+		            "status": "sent",
+		            "reject_reason": "hard-bounce",
+		            "_id": "abc123abc123abc123abc123abc123"
+		        }]
+		    */
+		}, function(e) {
+		    // Mandrill returns the error as an object with name and message keys
+		    console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
+		    // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
+		}
+	);
+	
+};

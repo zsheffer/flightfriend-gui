@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>
+		FlightFriend - Forms
+	</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width">
+
+
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700" rel="stylesheet" type="text/css">
+	
+	<link href="assets/css/1.3.0/black-blue/bootstrap.css" media="all" rel="stylesheet" type="text/css" id="bootstrap-css">
+	<link href="assets/css/1.3.0/black-blue/adminflare.min.css" media="all" rel="stylesheet" type="text/css" id="adminflare-css">
+	
+	<script src="assets/javascripts/1.3.0/modernizr-jquery.min.js" type="text/javascript"></script>
+	<script src="assets/javascripts/1.3.0/adminflare-demo.min.js" type="text/javascript"></script>
+	<script src="assets/javascripts/1.3.0/bootstrap.min.js" type="text/javascript"></script>
+	<script src="assets/javascripts/1.3.0/adminflare.js" type="text/javascript"></script>
+
+	<script src="assets/javascripts/1.3.0/fuelux-datagrid-example.min.js" type="text/javascript"></script>
+
+	<style type="text/css">
+		.well, .box { padding-bottom: 0; }
+		
+		.controls-vertical input, .controls-vertical select { display: block !important; float: none !important; }
+	</style>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			prettyPrint();
+		});
+	</script>
+	
+	<style type="text/css">
+		.box { padding-bottom: 0; }
+
+		.box > p { margin-bottom: 20px; }
+
+		#popovers li, #tooltips li {
+			display: block;
+			float: left;
+			list-style: none;
+			margin-right: 20px;
+		}
+		
+		.adminflare > div { margin-bottom: 20px; }
+		
+		.well, .box { padding-bottom: 0; }
+
+		#btns-disabled .btn, #button-dropdown-menus .btn-group { margin-right: 5px; }
+
+		#images img { margin-right: 15px; }
+
+		#counters .span4 > div { margin-bottom: 15px; }
+		
+		.nexter {
+			cursor: pointer;
+			margin-left: 5px;
+			font-size: 13px;
+			font-weight: normal;
+			line-height: 20px;			
+			color:#0e0e0e;
+		}
+		
+		.nexter:hover {color:#5e5e5e;}      /* unvisited link */
+	</style>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			prettyPrint();
+
+			/* Tooltips
+				================================================== */
+			$('a[rel=tooltip]').tooltip();
+
+
+			/* Popovers
+				================================================== */
+			$('a[rel=popover]').popover().click(function () {
+				return false
+			});
+
+
+			/* Butons
+				================================================== */
+			$("#loading-state-btn").click(function () {
+				$(this).button('loading');
+			});
+
+
+			/* Bootstrap-colorpicker
+				================================================== */
+			$("#colorpicker").colorpicker();
+			$("#colorpicker-rgb").colorpicker();
+			$("#colorpicker-component").colorpicker();
+
+
+			/* Bootstrap-datepicker
+				================================================== */
+			$("#datepicker").datepicker();
+			$("#datepicker-component").datepicker();
+			$("#datepicker-limited").datepicker();
+
+
+			/* Bootstrap-timepicker
+				================================================== */
+			$('#timepicker-default').timepicker({
+				defaultTime: 'value'
+			});
+
+			$('#timepicker-1').timepicker({
+				minuteStep: 1,
+				template: 'modal',
+				showSeconds: true,
+				showMeridian: false,
+				defaultTime: 'value'
+			});
+
+
+			/* Notifications
+				================================================== */
+			$('#notify').click(function () {
+				$('.top-right').notify({
+					message: {
+						text: 'Aw yeah, It works!'
+					},
+					type: 'adminflare'
+				}).show()
+			});
+
+			
+			/* Input & Textarea Character Limit Counter
+				================================================== */
+			$("#input-limit").limiter(20, $('#input-limit-s'));
+			$("#textarea-limit").limiter(100, $('#textarea-limit-s'));
+
+
+			/* Masked Inputs
+				================================================== */
+			$("#zip-masked").mask("99999");
+			$("#date-masked").mask("99/99/9999");
+			$("#phone-masked").mask("(999) 999-9999");
+			$("#ssn-masked").mask("999-99-9999");
+			$("#product-key-masked").mask("a*-999-a999", {
+				placeholder: " ",
+				completed: function(){
+					alert("You typed the following: " + this.val());
+				}
+			});
+
+			/* Form validations
+				================================================== */
+			$("input,select,textarea", '#validate-form').not("[type=submit]").jqBootstrapValidation();
+
+
+			/* Styled form elements
+				================================================== */
+			// Initializing checkboxes
+			$('#checkbox-toggle').on('click', function () {
+				$('#myCheckbox').checkbox('toggle');
+			});
+
+			$('#checkbox-disable').on('click', function () {
+				$('#myCheckbox').checkbox('disable');
+			});
+
+			$('#checkbox-enable').on('click', function () {
+				$('#myCheckbox').checkbox('enable');
+			});
+
+			// Initializing comboboxes
+			$('#myCombobox').on('changed', function (evt, data) {
+				console.log(data);
+			});
+	
+			$('#combobox-logItem').on('click', function () {
+				console.log($('#myCombobox').combobox('selectedItem'));
+			});
+	
+			$('#combobox-setByIndex').on('click', function () {
+				$('#myCombobox').combobox('selectByIndex', '1');
+			});
+	
+			$('#combobox-setByText').on('click', function () {
+				$('#myCombobox').combobox('selectByText', 'Item Three');
+			});
+	
+			$('#combobox-setBySelector').on('click', function () {
+				$('#myCombobox').combobox('selectBySelector', 'li[data-fizz=buzz]');
+			});
+	
+			$('#combobox-setByValue').on('click', function () {
+				$('#myCombobox').combobox('selectByValue', '1');
+			});
+	
+			$('#combobox-enable').on('click', function () {
+				$('#myCombobox').combobox('enable');
+			});
+	
+			$('#combobox-disable').on('click', function () {
+				$('#myCombobox').combobox('disable');
+			});
+
+
+			// Initializing search input
+			$('#MySearch').on('searched', function (e, text) {
+				alert('Searched: ' + text);
+			});
+
+			$('#search-enable').click(function () {
+				$('#MySearch').search('enable');
+			});
+
+			$('#search-disable').click(function () {
+				$('#MySearch').search('disable');
+			});
+
+			// Initializing spinner
+			$('#MySpinner').spinner();
+			$('#spinner-enable').click(function () {
+				$('#MySpinner').spinner('enable');
+			});
+
+			$('#spinner-disable').click(function () {
+				$('#MySpinner').spinner('disable');
+			});
+
+			$('#spinner-log').click(function () {
+				console.log("Spinner value: ", $('#MySpinner').spinner('value'));
+			});
+
+			// Initializing radio
+			$('#radio-disable').on('click', function () {
+				$('#myRadio').radio('disable');
+			});
+
+			$('#radio-enable').on('click', function () {
+				$('#myRadio').radio('enable');
+			});
+
+			// Initializing select
+
+			$('#select-logItem').on('click', function () {
+				console.log($('#mySelect').select('selectedItem'));
+			});
+
+			$('#select-setByIndex').on('click', function () {
+				$('#mySelect').select('selectByIndex', '1');
+			});
+
+			$('#select-setByText').on('click', function () {
+				$('#mySelect').select('selectByText', 'Item Three');
+			});
+
+			$('#select-setBySelector').on('click', function () {
+				$('#mySelect').select('selectBySelector', 'li[data-fizz=buzz]');
+			});
+
+			$('#select-setByValue').on('click', function () {
+				$('#mySelect').select('selectByValue', '1');
+			});
+
+			$('#select-enable').on('click', function () {
+				$('#mySelect').select('enable');
+			});
+
+			$('#select-disable').on('click', function () {
+				$('#mySelect').select('disable');
+			});
+
+
+			/* Datagrid
+				================================================== */
+			var dataSource = new StaticDataSource({
+				columns: [
+					{
+						property: 'toponymName',
+						label: 'Name',
+						sortable: true
+					},
+					{
+						property: 'countrycode',
+						label: 'Country',
+						sortable: true
+					},
+					{
+						property: 'population',
+						label: 'Population',
+						sortable: true
+					},
+					{
+						property: 'fcodeName',
+						label: 'Type',
+						sortable: true
+					}
+				],
+				data: sampleData.geonames,
+				delay: 250
+			});
+	
+			$('#MyGrid').datagrid({
+				dataSource: dataSource,
+				stretchHeight: true
+			});
+	
+			$('#datagrid-reload').on('click', function () {
+				$('#MyGrid').datagrid('reload');
+			});
+
+
+			/* Wizard
+				================================================== */
+			$('#myWizard').on('change', function (e, data) {
+				console.log('change');
+				if (data.step === 3 && data.direction === 'next') {
+					// return e.preventDefault();
+				}
+			});
+
+			$('#myWizard').on('changed', function (e, data) {
+				console.log('changed');
+			});
+
+			$('#myWizard').on('finished', function (e, data) {
+				console.log('finished');
+			});
+
+			$('#wizard-prev').on('click', function () {
+				$('#myWizard').wizard('previous');
+			});
+
+			$('#wizard-next').on('click', function () {
+				$('#myWizard').wizard('next', 'foo');
+			});
+
+			$('#wizard-logItem').on('click', function () {
+				var item = $('#myWizard').wizard('selectedItem');
+				console.log(item.step);
+			});
+									
+			$('#airlinecode').on('change', function( e ){
+			
+				if ( $(this).val() == 'OTHER' ){
+					$('#airlinecodeOtherContainer').show();
+				} else {
+					$('#airlinecodeOtherContainer').hide();
+				}
+				
+			});
+			
+			$('#whoFlight').on('changed', function (evt, data) {
+				
+				if ( data.value == 2 ){
+					$('#whoFlightOtherContainer').show();
+				} else {
+					$('#whoFlightOtherContainer').hide();
+				}
+				
+			});
+			
+			$('#wizardContainer').find('.step-pane.active').find('.nexter').each( function( i ){
+			
+				if ( $(this).attr('data-sub') !== '0' ){
+					$(this).hide();
+				} else {
+					$(this).show();
+				}
+			});
+			
+			$('#wizardContainer').find('.step-pane.active').find('.title').each( function( i ){
+				
+				if ( $(this).attr('data-sub') !== '0' ){
+					$(this).hide();
+				} else {
+					$(this).show();
+				}
+				
+			});
+			
+			$('.nexter').on('click', function () {
+			
+				$('#prev').show();
+
+				_dets	= $(this).attr('data-details');
+			
+				_cSub	= $(this).attr('data-sub');
+				_cMain	= $(this).closest('.step-pane').attr('id').slice(-1);
+				
+				_nMain	= $(this).attr('data-main-next');
+				_nSub	= $(this).attr('data-sub-next');
+				
+				console.log( _nSub );
+				
+				if ( _nMain > _cMain ){
+					$('#myWizard').wizard('next', 'foo');
+				}
+				
+				if ( $('#hiddenDetails').val() == '' ){
+					$('#hiddenDetails').val( _dets );
+				} else if ( _dets == undefined ){
+					// do nothing
+				} else {
+					$('#hiddenDetails').val( $('#hiddenDetails').val() + ' > ' + _dets );
+				}
+				
+				$('#prev').attr( 'data-sub-prev', _cSub );
+				$('#prev').attr( 'data-main-prev', _cMain );
+				
+				$('#wizardContainer').find('.step-pane.active').find('.title').each( function( i ){
+					
+					if ( $(this).attr('data-sub') !== _nSub ){
+						$(this).hide();
+					} else {
+						$(this).show();
+					}
+					
+				});
+				
+				$('#wizardContainer').find('.step-pane.active').find('.nexter').each( function( i ){
+					
+					if ( $(this).attr('data-sub') !== _nSub ){
+						$(this).hide();
+					} else {
+						$(this).show();
+					}
+					
+				});
+				
+			});
+			
+			$('#prev').on('click', function () {
+				
+				_nMain	= $(this).attr('data-main-prev');
+				_nSub	= '0';
+				
+				$('#wizardContainer').find('.step-pane.active').find('.title').each( function( i ){
+					
+					if ( $(this).attr('data-sub') !== _nSub ){
+						$(this).hide();
+					} else {
+						$(this).show();
+					}
+					
+				});
+				
+				$('#wizardContainer').find('.step-pane.active').find('.nexter').each( function( i ){
+					
+					if ( $(this).attr('data-sub') !== _nSub ){
+						$(this).hide();
+					} else {
+						$(this).show();
+					}
+					
+				});
+				
+			});
+			
+			
+			// this is the id of the submit button
+			$("#submitPayment").click(function() {
+				
+				var url = "/claim/submit"; // the script where you handle the form input.
+				
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: $("#validate-form").serialize(), // serializes the form's elements.
+					success: function( data ){
+					
+						console.log( data );
+						
+		
+						_cSub	= '0';
+						_cMain	= '3';
+						
+						_nSub	= '0';
+						_nMain	= '4';
+						
+						if ( _nMain > _cMain ){
+							$('#myWizard').wizard('next', 'foo');
+						}
+						
+						$('#prev').attr( 'data-sub-prev', _cSub );
+						$('#prev').attr( 'data-main-prev', _cMain );
+						
+						$('#wizardContainer').find('.step-pane.active').find('.title').each( function( i ){
+							
+							if ( $(this).attr('data-sub') !== _nSub ){
+								$(this).hide();
+							} else {
+								$(this).show();
+							}
+							
+						});
+						
+						$('#wizardContainer').find('.step-pane.active').find('.nexter').each( function( i ){
+							
+							if ( $(this).attr('data-sub') !== _nSub ){
+								$(this).hide();
+							} else {
+								$(this).show();
+							}
+							
+						});
+						
+						
+					},
+					error: function( data ){
+						alert( 'Hmm... something went wrong. Try again or reload the page' );
+					}
+				});
+				
+				return false; // avoid to execute the actual submit of the form.
+			});
+			
+		});
+	</script>
+	
+    <script type="text/javascript">
+    
+		function completeAndRedirect(){
+		
+			_cSub	= '0';
+			_cMain	= '2';
+			
+			_nSub	= '0';
+			_nMain	= '3';
+			
+			if ( _nMain > _cMain ){
+				$('#myWizard').wizard('next', 'foo');
+			}
+			
+			$('#prev').attr( 'data-sub-prev', _cSub );
+			$('#prev').attr( 'data-main-prev', _cMain );
+			
+			$('#wizardContainer').find('.step-pane.active').find('.title').each( function( i ){
+				
+				if ( $(this).attr('data-sub') !== _nSub ){
+					$(this).hide();
+				} else {
+					$(this).show();
+				}
+				
+			});
+			
+			$('#wizardContainer').find('.step-pane.active').find('.nexter').each( function( i ){
+				
+				if ( $(this).attr('data-sub') !== _nSub ){
+					$(this).hide();
+				} else {
+					$(this).show();
+				}
+				
+			});
+			
+		};
+    </script>
+    
+</head>
+<body class="fluid-layout">
+<script type="text/javascript">demoSetBodyLayout();</script>
+	<!-- Main navigation bar
+		================================================== -->
+	<header class="navbar navbar-fixed-top" id="main-navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				
+				<ul class="nav">
+					<li><a href="#">FlightFriend Logo Here</a></li>
+					<li class="divider-vertical"></li>
+				</ul>
+
+				<a class="btn nav-button collapsed" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-reorder"></span>
+				</a>
+
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <i class=" icon-caret-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Action</a></li>
+								<li><a href="#">Another action</a></li>
+								<li><a href="#">Something else here</a></li>
+								<li class="divider"></li>
+								<li class="nav-header">Nav header</li>
+								<li><a href="#">Separated link</a></li>
+								<li><a href="#">One more separated link</a></li>
+							</ul>
+						</li>
+						<li class="divider-vertical"></li>
+					</ul>
+					<ul class="nav pull-right">
+						<li>
+							<ul class="messages">
+								<li>
+									<a href="#"><i class="icon-envelope"></i> 2<span class="responsive-text"> new messages</span></a>
+								</li>
+							</ul>
+						</li>
+						<li class="separator"></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle usermenu" data-toggle="dropdown">
+								<img alt="Avatar" src="assets/images/avatar.png">
+								<span>&nbsp;&nbsp;Zac Sheffer</span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#">Profile</a>
+								</li>
+								<li>
+									<a href="#">Settings</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="index.html">Sign In</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- / Main navigation bar -->
+
+	<!-- Left navigation panel
+		================================================== -->
+	<nav id="left-panel">
+		<div id="left-panel-content">
+			<ul>
+				<li>
+					<a href="/dashboard"><span class="icon-dashboard"></span>Dashboard</a>
+				</li>
+				<li>
+					<a href="/claims/submit"><span class="icon-pencil"></span>Submit</a>
+				</li>
+				<li>
+					<a href="/invoices"><span class="icon-folder-open"></span>Invoices</a>
+				</li>
+				<li class="lp-dropdown">
+					<a href="#" class="lp-dropdown-toggle" id="extras-dropdown"><span class="icon-reorder"></span>Expand</a>
+					<ul class="lp-dropdown-menu" data-dropdown-owner="extras-dropdown">
+						<li>
+							<a tabindex="-1" href="extras-icons.html"><span class="icon-coffee"></span>1</a>
+						</li>
+						<li>
+							<a tabindex="-1" href="extras-charts.html"><span class="icon-bar-chart"></span>2</a>
+						</li>
+						<li>
+							<a tabindex="-1" href="extras-widgets.html"><span class="icon-star"></span>3</a>
+						</li>
+					</ul>
+				</li>
+				
+			</ul>
+		</div>
+		<div class="icon-caret-down"></div>
+		<div class="icon-caret-up"></div>
+	</nav>
+	<!-- / Left navigation panel -->
+	
+
+	<section class="container">
+
+		<!-- Wizard
+			================================================== -->
+		<section class="row-fluid">
+			<h3 class="box-header">Wizard</h3>
+			<div class="box">
+				<div id="wizardContainer" class="">
+					<div id="myWizard" class="wizard" style="margin-bottom: 30px;">
+						<ul class="steps">
+							<li data-target="#step1" class="active"><span class="badge badge-info">1</span>Basic Info</span></li>
+							<li data-target="#step2"><span class="badge">2</span>Details</li>
+							<li data-target="#step3"><span class="badge">3</span>Payment</li>
+							<li data-target="#step4"><span class="badge">4</span>Submit</li>
+						</ul>
+
+						<div id="actons=" class="actions">
+							<button id="prev" data-sub-prev="" data-main-prev="" class="btn btn-mini btn-prev" style="display:none;"><i class="icon-arrow-left"></i>Prev</button>
+							<!-- <button class="btn btn-mini btn-next" data-last="Finish">Next<i class="icon-arrow-right"></i></button> -->
+						</div>
+
+					</div>
+					<div class="step-content well" style="padding-left: 15px;">
+					
+						<!-- <input type="button" class="btn btn-mini" id="wizard-prev" value="back"> -->
+					
+						<div class="step-pane active" id="step1">
+							
+							<div id="">
+							
+								<h4 class="title" data-sub="0" >What happened with your flight?</h4>
+								
+								<p class="nexter" data-sub="0" data-main-next="1" data-sub-next="A2" data-details="Flight delayed or redirected">
+									<span style="padding-right:8px;">&bull;</span>My flight was delayed or redirected
+								</p>
+								<p class="nexter" data-sub="0" data-main-next="1" data-sub-next="B2" data-details="Denied boarding due to overbooking">
+									<span style="padding-right:8px;">&bull;</span>I was denied boarding to my flight due to overbooking
+								</p>
+								<p class="nexter" data-sub="0" data-main-next="1" data-sub-next="C2" data-details="Bag lost or stolen">
+									<span style="padding-right:8px;">&bull;</span>My bag was lost or delayed
+								</p>
+								<p class="nexter" data-sub="0" data-main-next="1" data-sub-next="A3-3" data-details="Something else">
+									<span style="padding-right:8px;">&bull;</span>Something else
+								</p>
+								
+							</div>
+							
+							
+							<div id="">
+							
+								<h4 class="title" data-sub="A2">Sorry about the trouble! Can you tell us more about your flight issue?</h4>
+								
+								<p class="nexter" data-sub="A2" data-main-next="1" data-sub-next="A3-1" data-details="Direct flight delay">
+									<span style="padding-right:8px;">&bull;</span>My direct, nonstop flight suffered a long delay
+								</p>
+								<p class="nexter" data-sub="A2" data-main-next="1" data-sub-next="A3-2" data-details="Delay caused missing connection">
+									<span style="padding-right:8px;">&bull;</span>One of my flights was delayed and I missed a connecting flight
+								</p>
+								<p class="nexter" data-sub="A2" data-main-next="1" data-sub-next="A3-3" data-details="Something else">
+									<span style="padding-right:8px;">&bull;</span>Something else
+								</p>
+								
+							</div>
+							
+							<div id="">
+								
+								<h4 class="title" data-sub="A3-1">How long was your delay?</h4>
+								
+								<p class="nexter" data-sub="A3-1" data-main-next="1" data-sub-next="A4-2" data-details="2- hours late">
+									<span style="padding-right:8px;">&bull;</span>My flight arrived &lt; 2 hours late 
+								</p>
+								<p class="nexter" data-sub="A3-1" data-main-next="1" data-sub-next="A4-1" data-details="2+ hours late">
+									<span style="padding-right:8px;">&bull;</span>My flight arrived &gt; 2 hours late
+								</p>
+								
+							</div>
+							
+							<div id="">
+
+								<h4 class="title" data-sub="A3-2">Did you reach your final destination within 2 hours of your originally scheduled arrival time?</h4>
+								
+								<p class="nexter" data-sub="A3-2" data-main-next="1" data-sub-next="A4-2" data-details="Arrived 2- hours late">
+									<span style="padding-right:8px;">&bull;</span>Yes
+								</p>
+								<p class="nexter" data-sub="A3-2" data-main-next="1" data-sub-next="A4-1" data-details="Arrived 2+ hours late">
+									<span style="padding-right:8px;">&bull;</span>No
+								</p>
+
+							</div>
+							
+							<div id="">
+
+								<h4 class="title" data-sub="A3-3">If you had an issue on your flight not covered here, we can still submit your information with an explanation of what happened on your behalf.</h4>
+								
+								<p class="nexter" data-sub="A3-3" data-main-next="2" data-sub-next="0">
+									<span style="padding-right:8px;">&bull;</span>Submit details for compensation
+								</p>
+								<p class="nexter" data-sub="A3-3">
+									<span style="padding-right:8px;">&bull;</span><a href="/" style="text-decoration:none; color: inherit;">No Thanks (return to homepage)</a>
+								</p>
+
+							</div>
+							
+							<div id="">
+								
+								<h4 class="title" data-sub="A4-1">Good news! Based on our understanding of FAA guidelines and airlines’ policies, we think you may be eligible for compensation.</h4>
+								
+								<p class="nexter" data-sub="A4-1" data-main-next="2" data-sub-next="0">
+									<span style="padding-right:8px;">&bull;</span>Submit my information
+								</p>
+								
+							</div>
+							
+							<div id="">
+								
+								<h4 class="title" data-sub="A4-2">Based on our understanding of FAA guidelines and airlines’ policies, we’re not certain your flight issue qualifies for compensation.</h4>
+								<h4 class="title" data-sub="A4-2">However, we’d be happy to submit your details to the airline if you’d still be interested in seeking compensation.</h4>
+								
+								<p class="nexter" data-sub="A4-2" data-main-next="2" data-sub-next="0">
+									<span style="padding-right:8px;">&bull;</span>Yes
+								</p>
+								<p class="nexter" data-sub="A4-2">
+									<span style="padding-right:8px;">&bull;</span><a href="/" style="text-decoration:none; color: inherit;">No</a>
+								</p>
+								
+							</div>
+							
+							<div id="">
+								
+								<h4 class="title" data-sub="A4-3">Good news! Based on our understanding of FAA guidelines and airlines’ policies, we think you may be eligible for compensation – especially if your bag was delayed by more than 12 hours.</h4>
+								
+								<p class="nexter" data-sub="A4-3" data-main-next="2" data-sub-next="0">
+									<span style="padding-right:8px;">&bull;</span>Submit my information
+								</p>
+								
+							</div>
+							
+							<div id="">
+
+								<h4 class="title" data-sub="B2">Sorry about the trouble! Were you rebooked on an alternate flight that got you to your destination within 2 hours of your originally scheduled arrival time?</h4>
+								
+								<p class="nexter" data-sub="B2" data-main-next="1" data-sub-next="A4-2" data-details="Arrived 2- hours late">
+									<span style="padding-right:8px;">&bull;</span>Yes
+								</p>
+								<p class="nexter" data-sub="B2" data-main-next="1" data-sub-next="A4-1" data-details="Arrived 2+ hours late">
+									<span style="padding-right:8px;">&bull;</span>No
+								</p>
+
+							</div>
+							
+							<div id="">
+
+								<h4 class="title" data-sub="C2">Sorry about the trouble! Can you tell us more about what happened to your bag?</h4>
+								
+								<p class="nexter" data-sub="C2" data-main-next="1" data-sub-next="A4-1" data-details="Lost bag">
+									<span style="padding-right:8px;">&bull;</span>The airline lost my bag
+								</p>
+								<p class="nexter" data-sub="C2" data-main-next="1" data-sub-next="A4-3" data-details="Delayed bag">
+									<span style="padding-right:8px;">&bull;</span>The bag was delayed
+								</p>
+
+							</div>
+							
+						</div>
+						<div class="step-pane" id="step2">
+							<div id="" data-sub="0">
+							
+								<h4 class="title" data-sub="0">Details About Your Flight</h4>
+								<div class="">
+									<form class="form-horizontal" id="validate-form" action="javascript:completeAndRedirect()" novalidate>
+									
+										<div class="control-group">
+											<label class="control-label" for="who">Who flew on this flight</label>
+											<div class="controls">
+											
+												<div id="whoFlight" class="select btn-group" data-resize="auto">
+													<button data-toggle="dropdown" class="btn dropdown-toggle"><span class="dropdown-label" style="width: 68px;">Me</span><span class="caret"></span></button>
+													<ul class="dropdown-menu">
+														<li data-value="1"><a href="javascript:void(0)">Me</a></li>
+														<li data-value="2"><a href="javascript:void(0)">A family member</a></li>
+													</ul>
+													
+												</div>
+											</div>
+										</div>
+									
+										<div id="whoFlightOtherContainer" class="control-group" style="display:none;">
+											<label class="control-label" for="name">Passenger Name</label>
+											<div class="controls">
+												<input type="text" placeholder="Their first name" name="theirFirstName" id="theirFirstName">
+												<input type="text" placeholder="Their last name" name="theirLastName" id="theirLastName">
+												<input type="text" placeholder="Your relationship" name="yourRelationship" id="yourRelationship">
+											</div>
+										</div>
+									
+										<div class="control-group">
+											<label class="control-label" for="name">Your Name</label>
+											<div class="controls">
+												<input type="text" placeholder="Your first name" name="yourFirstName" id="yourFirstName" required>
+												<input type="text" placeholder="Your last name" name="yourLastName" id="yourLastName" required>
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="airlinecode">Airline & Flight</label>
+											<div class="controls">
+											
+												<div id="mySelect" class="select btn-group" data-resize="auto">
+												
+													<select name="airlinecode" id="airlinecode">
+														<option value="" selected=""> &nbsp;</option>
+														
+															<option value="EI" id="EI - AER LINGUS"> AER LINGUS </option>
+														
+															<option value="JR" id="JR - AEROCALIFORNIA SERVICIOS AEREOS, SA"> AEROCALIFORNIA SERVI </option>
+														
+															<option value="SU" id="SU - AEROFLOT"> AEROFLOT </option>
+														
+															<option value="AR" id="AR - AEROLINEAS ARGENTINAS"> AEROLINEAS ARGENTINA </option>
+														
+															<option value="AM" id="AM - AEROMEXICO"> AEROMEXICO </option>
+														
+															<option value="AEROPOSTAL" id="AEROPOSTAL - AEROPOSTAL  AIRLINES"> AEROPOSTAL  AIRLINES </option>
+														
+															<option value="AEROSUR" id="AEROSUR - AEROSUR"> AEROSUR </option>
+														
+															<option value="AEROSVIT" id="AEROSVIT - AEROSVIT AIRLINES"> AEROSVIT AIRLINES </option>
+														
+															<option value="AG" id="AG - AIR BERLIN"> AIR BERLIN </option>
+														
+															<option value="AC" id="AC - AIR CANADA"> AIR CANADA </option>
+														
+															<option value="CA" id="CA - AIR CHINA"> AIR CHINA </option>
+														
+															<option value="UX" id="UX - AIR EUROPA"> AIR EUROPA </option>
+														
+															<option value="AF" id="AF - AIR FRANCE"> AIR FRANCE </option>
+														
+															<option value="AI" id="AI - AIR INDIA"> AIR INDIA </option>
+														
+															<option value="JM" id="JM - AIR JAMAICA"> AIR JAMAICA </option>
+														
+															<option value="ZV" id="ZV - AIR MIDWEST"> AIR MIDWEST </option>
+														
+															<option value="TE" id="TE - AIR NEW ZEALAND"> AIR NEW ZEALAND </option>
+														
+															<option value="TN" id="TN - AIR TAHITI NUI"> AIR TAHITI NUI </option>
+														
+															<option value="ZW" id="ZW - AIR WISCONSIN"> AIR WISCONSIN </option>
+														
+															<option value="AIRFARE" id="AIRFARE - AIRFARE.COM"> AIRFARE.COM </option>
+														
+															<option value="FL" id="FL - AIRTRAN AIRWAYS"> AIRTRAN AIRWAYS </option>
+														
+															<option value="AS" id="AS - ALASKA AIRLINES"> ALASKA AIRLINES </option>
+														
+															<option value="AZ" id="AZ - ALITALIA AIRLINES"> ALITALIA AIRLINES </option>
+														
+															<option value="G4" id="G4 - ALLEGIANT AIR"> ALLEGIANT AIR </option>
+														
+															<option value="AQ" id="AQ - ALOHA AIRLINES"> ALOHA AIRLINES </option>
+														
+															<option value="HP" id="HP - AMERICA WEST AIRLINES"> AMERICA WEST AIRLINE </option>
+														
+															<option value="AA" id="AA - AMERICAN AIRLINES"> AMERICAN AIRLINES </option>
+														
+															<option value="AAX" id="AAX - AMERICAN EAGLE AIRLINES"> AMERICAN EAGLE AIRLI </option>
+														
+															<option value="ARIK" id="ARIK - ARIK AIR"> ARIK AIR </option>
+														
+															<option value="OZ" id="OZ - ASIANA AIRLINES"> ASIANA AIRLINES </option>
+														
+															<option value="TZ" id="TZ - ATA AIRLINES"> ATA AIRLINES </option>
+														
+															<option value="OS" id="OS - AUSTRIAN AIRLINES"> AUSTRIAN AIRLINES </option>
+														
+															<option value="AV" id="AV - AVIANCA"> AVIANCA </option>
+														
+															<option value="BABOO" id="BABOO - BABOO AIRWAYS"> BABOO AIRWAYS </option>
+														
+															<option value="UP" id="UP - BAHAMASAIR HOLDINGS"> BAHAMASAIR HOLDINGS </option>
+														
+															<option value="GQ" id="GQ - BIG SKY AIRLINES"> BIG SKY AIRLINES </option>
+														
+															<option value="BIMINI ISL" id="BIMINI ISL - BIMINI ISLAND AIR"> BIMINI ISLAND AIR </option>
+														
+															<option value="BOOKIT" id="BOOKIT - BOOKIT.COM"> BOOKIT.COM </option>
+														
+															<option value="BA" id="BA - BRITISH AIRWAYS"> BRITISH AIRWAYS </option>
+														
+															<option value="BD" id="BD - BRITISH MIDLAND AIRWAYS"> BRITISH MIDLAND AIRW </option>
+														
+															<option value="SN2" id="SN2 - BRUSSELS AIRLINES"> BRUSSELS AIRLINES </option>
+														
+															<option value="C&amp;T" id="C&amp;T - C&amp;T CHARTERS"> C&amp;T CHARTERS </option>
+														
+															<option value="9K" id="9K - CAPE AIR"> CAPE AIR </option>
+														
+															<option value="BW" id="BW - CARIBBEAN AIRLINES (FORMERLY BWIA)"> CARIBBEAN AIRLINES ( </option>
+														
+															<option value="CX" id="CX - CATHAY PACIFIC AIRWAYS"> CATHAY PACIFIC AIRWA </option>
+														
+															<option value="CHAMPAIR" id="CHAMPAIR - CHAMPION AIR"> CHAMPION AIR </option>
+														
+															<option value="CH" id="CH - CHAUTAUQUA AIRLINES"> CHAUTAUQUA AIRLINES </option>
+														
+															<option value="CHEAPTIX" id="CHEAPTIX - CHEAP TICKETS"> CHEAP TICKETS </option>
+														
+															<option value="CHEAPO" id="CHEAPO - CHEAPOAIR.COM"> CHEAPOAIR.COM </option>
+														
+															<option value="C8" id="C8 - CHICAGO EXPRESS"> CHICAGO EXPRESS </option>
+														
+															<option value="CI" id="CI - CHINA AIRLINES"> CHINA AIRLINES </option>
+														
+															<option value="CHINA EAST" id="CHINA EAST - CHINA EASTERN AIRLINES"> CHINA EASTERN AIRLIN </option>
+														
+															<option value="CZ" id="CZ - CHINA SOUTHERN AIRLINES"> CHINA SOUTHERN AIRLI </option>
+														
+															<option value="XG" id="XG - CLICKAIR, S.A."> CLICKAIR, S.A. </option>
+														
+															<option value="CJ" id="CJ - COLGAN AIR"> COLGAN AIR </option>
+														
+															<option value="OH" id="OH - COMAIR"> COMAIR </option>
+														
+															<option value="C5" id="C5 - COMMUTAIR"> COMMUTAIR </option>
+														
+															<option value="COMPASS" id="COMPASS - COMPASS AIRLINES"> COMPASS AIRLINES </option>
+														
+															<option value="CO" id="CO - CONTINENTAL AIRLINES"> CONTINENTAL AIRLINES </option>
+														
+															<option value="CM" id="CM - COPA COMPANIA PANAMENA DE AVIACION"> COPA COMPANIA PANAME </option>
+														
+															<option value="OK" id="OK - CZECHOSLOVAK AIRLINES"> CZECHOSLOVAK AIRLINE </option>
+														
+															<option value="DL" id="DL - DELTA AIR LINES"> DELTA AIR LINES </option>
+														
+															<option value="DIRECTAIR" id="DIRECTAIR - DIRECT AIR AND TOURS"> DIRECT AIR AND TOURS </option>
+														
+															<option value="DAE" id="DAE - DUTCH ANTILLES EXPRESS"> DUTCH ANTILLES EXPRE </option>
+														
+															<option value="MS" id="MS - EGYPTAIR"> EGYPTAIR </option>
+														
+															<option value="LY" id="LY - EL AL ISRAEL"> EL AL ISRAEL </option>
+														
+															<option value="EK" id="EK - EMIRATES AIRLINES"> EMIRATES AIRLINES </option>
+														
+															<option value="9E" id="9E - ENDEAVOR AIR ((FORMERLY PINNACLE AI"> ENDEAVOR AIR ((FORME </option>
+														
+															<option value="ET" id="ET - ETHIOPIAN AIRLINES"> ETHIOPIAN AIRLINES </option>
+														
+															<option value="EY" id="EY - ETIHAD AIRWAYS"> ETIHAD AIRWAYS </option>
+														
+															<option value="GJ" id="GJ - EUROFLY, S.P.A."> EUROFLY, S.P.A. </option>
+														
+															<option value="BR" id="BR - EVA AIRWAYS"> EVA AIRWAYS </option>
+														
+															<option value="OW" id="OW - EXECUTIVE AIRLINES"> EXECUTIVE AIRLINES </option>
+														
+															<option value="EXPEDIA" id="EXPEDIA - EXPEDIA.COM"> EXPEDIA.COM </option>
+														
+															<option value="EV" id="EV - EXPRESSJET AIRLINES"> EXPRESSJET AIRLINES </option>
+														
+															<option value="F2" id="F2 - FALCON AIR EXPRESS"> FALCON AIR EXPRESS </option>
+														
+															<option value="FJ" id="FJ - FIJI AIRWAYS (FORMERLY AIR PACIFIC)"> FIJI AIRWAYS (FORMER </option>
+														
+															<option value="AY" id="AY - FINNAIR OY"> FINNAIR OY </option>
+														
+															<option value="OJ" id="OJ - FLY JAMAICA"> FLY JAMAICA </option>
+														
+															<option value="GSM" id="GSM - FLYGLOBESPAN AKA GLOBESPAN"> FLYGLOBESPAN AKA GLO </option>
+														
+															<option value="F8" id="F8 - FREEDOM AIRLNES"> FREEDOM AIRLNES </option>
+														
+															<option value="F9" id="F9 - FRONTIER AIRLINES"> FRONTIER AIRLINES </option>
+														
+															<option value="FUNJET" id="FUNJET - FUN JET INCORPORATED"> FUN JET INCORPORATED </option>
+														
+															<option value="GEORGIASKI" id="GEORGIASKI - GEORGIA SKIES"> GEORGIA SKIES </option>
+														
+															<option value="GO!" id="GO! - GO! (HAWAII)"> GO! (HAWAII) </option>
+														
+															<option value="ZK" id="ZK - GREAT LAKES AVIATION"> GREAT LAKES AVIATION </option>
+														
+															<option value="GF" id="GF - GULF AIR"> GULF AIR </option>
+														
+															<option value="3M" id="3M - GULFSTREAM INT'L AIRLINES, INC"> GULFSTREAM INT'L AIR </option>
+														
+															<option value="HA" id="HA - HAWAIIAN AIRLINES"> HAWAIIAN AIRLINES </option>
+														
+															<option value="HT" id="HT - HELLENICA IMPERIAL AIRWAYS"> HELLENICA IMPERIAL A </option>
+														
+															<option value="HOOTERS" id="HOOTERS - HOOTERS AIRLINES"> HOOTERS AIRLINES </option>
+														
+															<option value="QX" id="QX - HORIZON AIRLINES"> HORIZON AIRLINES </option>
+														
+															<option value="HOTWIRE" id="HOTWIRE - HOTWIRE.COM"> HOTWIRE.COM </option>
+														
+															<option value="IB" id="IB - IBERIA AIRLINES"> IBERIA AIRLINES </option>
+														
+															<option value="ICELANDEXP" id="ICELANDEXP - ICELAND EXPRESS"> ICELAND EXPRESS </option>
+														
+															<option value="FI" id="FI - ICELANDAIR"> ICELANDAIR </option>
+														
+															<option value="ISLANDAIR" id="ISLANDAIR - ISLAND AIRLINES"> ISLAND AIRLINES </option>
+														
+															<option value="6H" id="6H - ISRAIR"> ISRAIR </option>
+														
+															<option value="JALWAYS" id="JALWAYS - JALWAYS CO., LTD."> JALWAYS CO., LTD. </option>
+														
+															<option value="JL" id="JL - JAPAN AIR LINES COMPANY"> JAPAN AIR LINES COMP </option>
+														
+															<option value="J9" id="J9 - JAZEERA AIRWAYS"> JAZEERA AIRWAYS </option>
+														
+															<option value="JA" id="JA - JET AIRWAYS"> JET AIRWAYS </option>
+														
+															<option value="B6" id="B6 - JETBLUE AIRWAYS"> JETBLUE AIRWAYS </option>
+														
+															<option value="KAYAK" id="KAYAK - KAYAK"> KAYAK </option>
+														
+															<option value="KL" id="KL - KLM"> KLM </option>
+														
+															<option value="KE" id="KE - KOREAN AIR LINES"> KOREAN AIR LINES </option>
+														
+															<option value="KU" id="KU - KUWAIT AIRWAYS"> KUWAIT AIRWAYS </option>
+														
+															<option value="LR" id="LR - LACSA"> LACSA </option>
+														
+															<option value="LAN" id="LAN - LAN AIRLINES S.A."> LAN AIRLINES S.A. </option>
+														
+															<option value="LAN-ARGEN" id="LAN-ARGEN - LAN ARGENTINA"> LAN ARGENTINA </option>
+														
+															<option value="LA" id="LA - LAN CHILE AIRLINES"> LAN CHILE AIRLINES </option>
+														
+															<option value="4C" id="4C - LAN COLUMBIA (FORMERLY AIRES)"> LAN COLUMBIA (FORMER </option>
+														
+															<option value="LAN-ECUA" id="LAN-ECUA - LAN ECUADOR"> LAN ECUADOR </option>
+														
+															<option value="LAN-PERU" id="LAN-PERU - LAN PERU AIRLINES"> LAN PERU AIRLINES </option>
+														
+															<option value="LI" id="LI - LIAT"> LIAT </option>
+														
+															<option value="LB" id="LB - LLOYD AEREO BOLIVIANO"> LLOYD AEREO BOLIVIAN </option>
+														
+															<option value="LO" id="LO - LOT POLISH AIRLINES"> LOT POLISH AIRLINES </option>
+														
+															<option value="LT" id="LT - LTU, GERMAN CHARTERS"> LTU, GERMAN CHARTERS </option>
+														
+															<option value="LH" id="LH - LUFTHANSA"> LUFTHANSA </option>
+														
+															<option value="LYNX" id="LYNX - LYNXAIR INTERNATIONAL"> LYNXAIR INTERNATIONA </option>
+														
+															<option value="MAKEMYTRP" id="MAKEMYTRP - MAKEMYTRIP.COM"> MAKEMYTRIP.COM </option>
+														
+															<option value="MH" id="MH - MALAYSIA AIRLINES"> MALAYSIA AIRLINES </option>
+														
+															<option value="MP" id="MP - MARTINAIR HOLLAND"> MARTINAIR HOLLAND </option>
+														
+															<option value="IG" id="IG - MERIDIANA FLY"> MERIDIANA FLY </option>
+														
+															<option value="YV" id="YV - MESA AIRLINES"> MESA AIRLINES </option>
+														
+															<option value="XJ" id="XJ - MESABA AVIATION"> MESABA AVIATION </option>
+														
+															<option value="MX" id="MX - MEXICANA"> MEXICANA </option>
+														
+															<option value="YX" id="YX - MIDWEST  AIRLINES"> MIDWEST  AIRLINES </option>
+														
+															<option value="NA" id="NA - NORTH AMERICAN AIRLINES"> NORTH AMERICAN AIRLI </option>
+														
+															<option value="NW" id="NW - NORTHWEST AIRLINES"> NORTHWEST AIRLINES </option>
+														
+															<option value="OA" id="OA - OLYMPIC AIRWAYS"> OLYMPIC AIRWAYS </option>
+														
+															<option value="ONETRAVEL" id="ONETRAVEL - ONETRAVEL"> ONETRAVEL </option>
+														
+															<option value="EC" id="EC - OPEN SKIES"> OPEN SKIES </option>
+														
+															<option value="ORBITZ" id="ORBITZ - ORBITZ.COM"> ORBITZ.COM </option>
+														
+															<option value="OTHER" id="OTHER - OTHER"> OTHER </option>
+														
+															<option value="OTHER TA" id="OTHER TA - OTHER TRAVEL AGENTS"> OTHER TRAVEL AGENTS </option>
+														
+															<option value="PACWINGS" id="PACWINGS - PACIFIC WINGS"> PACIFIC WINGS </option>
+														
+															<option value="PK" id="PK - PAKISTAN INTERNATIONAL AIRLINES"> PAKISTAN INTERNATION </option>
+														
+															<option value="OP" id="OP - PAN AM"> PAN AM </option>
+														
+															<option value="KS" id="KS - PENNISULA AIR"> PENNISULA AIR </option>
+														
+															<option value="PR" id="PR - PHILIPPINE AIRLINES"> PHILIPPINE AIRLINES </option>
+														
+															<option value="EN" id="EN - PIEDMONT AIRLINES"> PIEDMONT AIRLINES </option>
+														
+															<option value="PORTER" id="PORTER - PORTER AIRLINES"> PORTER AIRLINES </option>
+														
+															<option value="PRICELINE" id="PRICELINE - PRICELINE.COM"> PRICELINE.COM </option>
+														
+															<option value="JS" id="JS - PSA AIRLINES"> PSA AIRLINES </option>
+														
+															<option value="QF" id="QF - QANTAS AIRWAYS"> QANTAS AIRWAYS </option>
+														
+															<option value="QR" id="QR - QATAR AIRWAYS"> QATAR AIRWAYS </option>
+														
+															<option value="REPUB" id="REPUB - REPUBLIC AIRLINES"> REPUBLIC AIRLINES </option>
+														
+															<option value="AT" id="AT - ROYAL AIR MAROC"> ROYAL AIR MAROC </option>
+														
+															<option value="RJ" id="RJ - ROYAL JORDANIAN AIRLINES (ALIA)"> ROYAL JORDANIAN AIRL </option>
+														
+															<option value="RYANAIRSVC" id="RYANAIRSVC - RYAN AIR (FCC)"> RYAN AIR (FCC) </option>
+														
+															<option value="XY" id="XY - RYAN INTERNATIONAL AIRLINES"> RYAN INTERNATIONAL A </option>
+														
+															<option value="SK" id="SK - SAS"> SAS </option>
+														
+															<option value="S4" id="S4 - SATA INTERNACIONAL"> SATA INTERNACIONAL </option>
+														
+															<option value="K5" id="K5 - SEAPORT AIRLINES"> SEAPORT AIRLINES </option>
+														
+															<option value="S5" id="S5 - SHUTTLE AMERICA"> SHUTTLE AMERICA </option>
+														
+															<option value="SILVERAIR" id="SILVERAIR - SILVER AIRWAYS"> SILVER AIRWAYS </option>
+														
+															<option value="SQ" id="SQ - SINGAPORE AIRLINES"> SINGAPORE AIRLINES </option>
+														
+															<option value="SLQ" id="SLQ - SKY KING AIRLINES"> SKY KING AIRLINES </option>
+														
+															<option value="SB" id="SB - SKYBUS AIRLINES"> SKYBUS AIRLINES </option>
+														
+															<option value="SKYVALUE" id="SKYVALUE - SKYVALUE USA"> SKYVALUE USA </option>
+														
+															<option value="QG" id="QG - SKYWEST AIRLINES"> SKYWEST AIRLINES </option>
+														
+															<option value="SONG" id="SONG - SONG"> SONG </option>
+														
+															<option value="SA" id="SA - SOUTH AFRICAN AIRWAYS"> SOUTH AFRICAN AIRWAY </option>
+														
+															<option value="WN" id="WN - SOUTHWEST AIRLINES"> SOUTHWEST AIRLINES </option>
+														
+															<option value="SPANAIR" id="SPANAIR - SPANAIR"> SPANAIR </option>
+														
+															<option value="NK" id="NK - SPIRIT AIRLINES"> SPIRIT AIRLINES </option>
+														
+															<option value="SRILANKAN" id="SRILANKAN - SRILANKAN AIRLINES"> SRILANKAN AIRLINES </option>
+														
+															<option value="SUNCOUNTRY" id="SUNCOUNTRY - SUN COUNTRY AIRLINES"> SUN COUNTRY AIRLINES </option>
+														
+															<option value="SUNTRIPS" id="SUNTRIPS - SUNTRIPS OF CALIFORNIA"> SUNTRIPS OF CALIFORN </option>
+														
+															<option value="LX" id="LX - SWISS AIR (NEW)"> SWISS AIR (NEW) </option>
+														
+															<option value="SR" id="SR - SWISSAIR"> SWISSAIR </option>
+														
+															<option value="TA" id="TA - TACA INTERNATIONAL AIRLINES"> TACA INTERNATIONAL A </option>
+														
+															<option value="TAM" id="TAM - TAM"> TAM </option>
+														
+															<option value="TAME" id="TAME - TAME"> TAME </option>
+														
+															<option value="TP" id="TP - TAP"> TAP </option>
+														
+															<option value="TED" id="TED - TED"> TED </option>
+														
+															<option value="TG" id="TG - THAI AIRWAYS INTERNATIONAL"> THAI AIRWAYS INTERNA </option>
+														
+															<option value="9N" id="9N - TRANS STATES AIRLINES"> TRANS STATES AIRLINE </option>
+														
+															<option value="TRANSAERO" id="TRANSAERO - TRANSAERO"> TRANSAERO </option>
+														
+															<option value="TRANSMER" id="TRANSMER - TRANSMERIDIAN AIRLINES"> TRANSMERIDIAN AIRLIN </option>
+														
+															<option value="TRAVELAND" id="TRAVELAND - TRAVELAND"> TRAVELAND </option>
+														
+															<option value="TRAVELOCIT" id="TRAVELOCIT - TRAVELOCITY.COM"> TRAVELOCITY.COM </option>
+														
+															<option value="9T" id="9T - TRAVELSPAN G.T. INC. S.A."> TRAVELSPAN G.T. INC. </option>
+														
+															<option value="TK" id="TK - TURKISH AIRLINES"> TURKISH AIRLINES </option>
+														
+															<option value="TWINAIR" id="TWINAIR - TWIN AIR CALYPSO"> TWIN AIR CALYPSO </option>
+														
+															<option value="UA" id="UA - UNITED AIRLINES"> UNITED AIRLINES </option>
+														
+															<option value="UW" id="UW - UNIVERSAL AIRLINES"> UNIVERSAL AIRLINES </option>
+														
+															<option value="US" id="US - US AIRWAYS"> US AIRWAYS </option>
+														
+															<option value="B5" id="B5 - USA3000"> USA3000 </option>
+														
+															<option value="RG" id="RG - VARIG AIRLINES"> VARIG AIRLINES </option>
+														
+															<option value="VAYAMA" id="VAYAMA - VAYAMA"> VAYAMA </option>
+														
+															<option value="VX" id="VX - VIRGIN AMERICA"> VIRGIN AMERICA </option>
+														
+															<option value="VS" id="VS - VIRGIN ATLANTIC AIRWAYS"> VIRGIN ATLANTIC AIRW </option>
+														
+															<option value="VISION" id="VISION - VISION AIRLINES"> VISION AIRLINES </option>
+														
+															<option value="Y4" id="Y4 - VOLARIS AIRLINES"> VOLARIS AIRLINES </option>
+														
+															<option value="WESTJET" id="WESTJET - WEST JET"> WEST JET </option>
+														
+															<option value="WINAIR" id="WINAIR - WINAIR"> WINAIR </option>
+														
+															<option value="WORLDATLAN" id="WORLDATLAN - WORLD ATLANTIC"> WORLD ATLANTIC </option>
+														
+															<option value="XL" id="XL - XL AIRWAYS"> XL AIRWAYS </option>
+														
+															<option value="CASINOEXP" id="CASINOEXP - XTRA AIR AKA CASINO EXPRESS"> XTRA AIR AKA CASINO  </option>
+														
+															<option value="YELLOWAIR" id="YELLOWAIR - YELLOW AIR TAXI"> YELLOW AIR TAXI </option>
+														
+													</select>
+													<input type="text" placeholder="The flight number" name="flightnumber" id="flightnumber" style="margin-left: 3px" required>
+													<p class="help-block">(If not listed or not applicable select "OTHER")</p>
+													
+													<span id="airlinecodeOtherContainer" style="display:none;">
+														</br>
+														<input type="text" placeholder="The airline" name="airlinecodeother" id="airlinecodeOther">
+													</span>
+													
+												</div>
+																									
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="date">Departure Date</label>
+											<div class="controls">
+												<input type="text" class="input-small" value="04/16/2014" id="datepicker" data-date-format="mm/dd/yyyy"><br>
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="email">Flight Itinerary</label>
+											<div class="controls">
+												<input type="text" class="input-large" placeholder="Flight Itinerary" name="flightitinerary" id="flightitinerary">
+												<p class="help-block">Cities / Flight Number (if applicable)</p>
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="before">Have you submitted any other request for compensation to the airline</label>
+											<div class="controls">
+												<label class="radio radio-custom"><input type="radio" name="Submitted-request-for-compensation-before" value="No" checked="checked" id="before"><i class="radio checked"></i>No</label>
+												<label class="radio radio-custom"><input type="radio" name="Submitted-request-for-compensation-before" value="Yes"><i class="radio"></i>Yes</label>
+											</div>
+										</div>
+										
+<!--
+										<div class="control-group">
+											<label class="control-label" for="emailAgain">Email again</label>
+											<div class="controls">
+												<input type="email" data-validation-matches-match="email" data-validation-matches-message="Must match email address entered above" id="emailAgain" name="emailAgain">
+												<p class="help-block">And again, to check for speeling miskates</p>
+											</div>
+										</div>
+-->
+										<div class="control-group">
+											<label class="control-label"><h4>Contact Information</h4></label>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="email">Address</label>
+											<div class="controls">
+												<input type="text" placeholder="Street" name="street" id="street">
+												<input type="text" placeholder="City" name="city" id="city">
+											</div>
+											<div class="controls">
+												<input type="text" placeholder="State" name="state" id="state" class="input-small">
+												<input type="text" placeholder="Zip Code" name="zip" id="zip-masked" class="input-small">
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="email">Email address</label>
+											<div class="controls">
+												<input type="email" placeholder="Your Email" name="email" id="email" required>
+												<p class="help-block">Email address we can contact you on</p>
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="phone">Phone Number</label>
+											<div class="controls">
+												<input type="text" placeholder="Phone: (619) 403-0424" name="phone" id="phone-masked" required>
+												<p class="help-block">Best number to reach you at</p>
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<div class="controls">
+												<p class="help-block"></br></br>Please select the following, as appropriate. <b>(Checking either yes or no will have no bearing on DOT's handling of your complaint/inquiry/opinion.)</b></br></br>I agree to permit DOT to provide a copy of my complaint/inquiry/opinion and related documentation to the following entities, as appropriate:</p>
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<p class="help-block">
+											
+											</p>
+											<label class="control-label" for="radioA">State and local governments in the U.S. (e.g., a state airport authority)</label>
+											<div class="controls">
+												<label class="radio radio-custom"><input type="radio" name="StateAndLocal" value="No" id="radioA_No"><i class="radio"></i>No</label>
+												<label class="radio radio-custom"><input type="radio" name="StateAndLocal" value="Yes" id="radioA_Yes" checked><i class="radio"></i>Yes</label>
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="radioB">Federal agencies in the U.S. other than DOT (e.g., Transportation Security Administration)</label>
+											<div class="controls">
+												<label class="radio radio-custom"><input type="radio" name="Federal" value="No" id="radioB_No"><i class="radio"></i>No</label>
+												<label class="radio radio-custom"><input type="radio" name="Federal" value="Yes" id="radioB_Yes" checked><i class="radio"></i>Yes</label>
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="radioC">International organizations outside the U.S. that might also have jurisdiction over aviation issues or that facilitate the investigation of airline consumer complaints (e.g., a national enforcement body in Europe, European Civil Aviation Conference(ECAC))</label>
+											<div class="controls">
+												<label class="radio radio-custom"><input type="radio" name="International" value="No" id="radioC_No"><i class="radio"></i>No</label>
+												<label class="radio radio-custom"><input type="radio" name="International" value="Yes" id="radioC_Yes" checked><i class="radio"></i>Yes</label>
+												<!-- <p class="help-block"></p> -->
+											</div>
+										</div>
+																				
+										<div class="control-group">
+											<label class="control-label" for="terms-and-conditions">Our Legal</label>
+											<div class="controls">
+												<label class="checkbox">
+													<input type="checkbox" id="terms-and-conditions" name="terms-and-conditions" required data-validation-required-message="You must agree to the terms and conditions">
+													I agree to the <a href="/terms" target="_blank">terms and conditions</a>
+												</label>
+												<p class="help-block"></p>
+											</div>
+										</div>
+										
+										<div class="control-group" style="display:none;">
+											<label class="control-label">Hidden Details</label>
+											<div class="controls">
+												<input type="text" placeholder="Details" name="hiddenDetails" id="hiddenDetails">
+											</div>
+										</div>
+										
+										<div class="form-actions" style="margin-bottom: -20px">
+											<button type="submit" value="submit" class="btn btn-large btn-primary">Submit Claim <i class="icon-ok icon-white"></i></button>
+										</div>
+									</form>
+								</div>
+								
+							</div>
+						</div>
+						<div class="step-pane" id="step3">
+							<!-- <h4>You will now be charged a $2.99 administrative fee to initiate a new claim. </br></br>We normally charge a 15% success fee on the compensation you get. However, we are waiving this fee for a limited introductory period.</h4> -->
+							
+							<h4>We normally charge an administrative fee to initiate a new claim. However, we are waiving this fee for a limited introductory period.</h4>
+							<button id="submitPayment" class="btn btn-large btn-primary">Submit Claim <i class="icon-ok icon-white"></i></button>
+							
+						</div>
+						<div class="step-pane" id="step4">
+							
+							<h4>You’re all done!</h4>
+							<h4>You should be receiving an email from us shortly – if you have any questions, feel free to email us at <a href="mailto:help@flight-friend.com">help@flight-friend.com</a></h4>					
+						</div>
+					</div>
+				</div>
+				
+				
+				<section class="row-fluid" style="display:none;">
+		
+					<div class="span6">
+		
+						<!-- Input Character Limit Counter
+							================================================== -->
+						<h3 class="box-header">Input Character Limit Counter</h3>
+						<div class="box clearfix">
+							<input type="text" class="span12" id="input-limit">
+							<div style="display: block; margin: -7px 0 20px 0; color: #888">
+								Characters left:
+								<span id="input-limit-s" style="color: #555; font-weight: 700">0</span>
+							</div>
+						</div>
+						<!-- / Input Character Limit Counter -->
+		
+						<!-- Textarea Character Limit Counter
+							================================================== -->
+						<h3 class="box-header">Textarea Character Limit Counter</h3>
+						<div class="box clearfix">
+							<textarea class="span12" rows="4" id="textarea-limit"></textarea>
+							<div style="display: block; margin: -7px 0 20px 0; color: #888">
+								Characters left:
+								<span id="textarea-limit-s" style="color: #555; font-weight: 700">0</span>
+							</div>
+						</div>
+						<!-- / Textarea Character Limit Counter -->
+		
+					</div>
+					
+				</section>
+				
+<!--
+				<input type="button" class="btn btn-mini" id="wizard-prev" value="prev">
+				<input type="button" class="btn btn-mini" id="wizard-next" value="next">
+				<input type="button" class="btn btn-mini" id="wizard-logItem" value="current step">
+-->
+				
+			</div>
+			
+		</section>
+		<!-- / Wizard -->
+
+		<!-- Page footer
+			================================================== -->
+		<footer id="main-footer">
+			Copyright © 2014 <a href="#">FlightFriend</a>, all rights reserved.
+			<a href="/" class="pull-right" id="on-top-link">
+				On Top &nbsp;<i class=" icon-chevron-up"></i>
+			</a>
+		</footer>
+		<!-- / Page footer -->
+	</section>
+	
+</body>
+</html>

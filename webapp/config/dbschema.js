@@ -68,11 +68,7 @@ var userSchema = new Schema({
 	welcomed		: { type: Boolean, default: false }
 })
 
-//******* Database schema TODO add more validation
-var Schema		= mongoose.Schema, 
-	ObjectId	= Schema.ObjectId;
-
-// User schema
+// Token schema
 var tokenSchema = new Schema({
 
 	token		: { type: String, default: '' },
@@ -85,6 +81,13 @@ var tokenSchema = new Schema({
 	
 })
 
+// Claim schema
+var claimSchema = new Schema({
+
+	claimID		: { type: String, default: '' },
+	data		: { type: Object }
+	
+})
 
 
 
@@ -121,6 +124,10 @@ exports.userModel = userModel;
 
 var tokenModel = mongoose.model('Token', tokenSchema);
 exports.tokenModel = tokenModel;
+
+
+var claimModel = mongoose.model('Claim', claimSchema);
+exports.claimModel = claimModel;
 
 
 // exports when using grunt

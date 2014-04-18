@@ -16,6 +16,7 @@
 		"bcrypt"				: "0.7.3",
 		"ejs"					: "*",
 		"node-uuid"				: "*",
+		"shortid"				: "*",
 		"jade"					: "0.27.7",
 		"stylus"				: "0.31.0",
 		"consolidate"			: "*",

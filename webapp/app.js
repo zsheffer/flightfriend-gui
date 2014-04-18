@@ -65,12 +65,12 @@ function checkAuth(req, res, next){
 app.get('/',				function( req, res ){ res.render('landing') });
 app.get('/signup',			function( req, res ){ res.render('signup-rotate') });
 
-app.get('/terms',			function( req, res ){ res.render('404'); });
+app.get('/terms',			function( req, res ){ res.render('terms'); });
+app.get('/faqs',			function( req, res ){ res.render('faqs'); });
 
 app.get('/contact-us',		function( req, res ){ res.render('contact-us') });
 app.get('/about-us',		function( req, res ){ res.render('about-us') });
 app.get('/construction',	function( req, res ){ res.render('construction'); });
-
 
 // routes that help to authenticate a user
 app.get('/login',	uRoutes.getLogin);
@@ -81,6 +81,9 @@ app.post('/login',	passport.authenticate('local', {
 
 
 // routes that REQUIRE authentication
+app.get('/claim',			uRoutes.getClaim );
+app.post('/claim/submit',	uRoutes.postClaimSubmit );
+app.get('/claims',			uRoutes.getClaims );
 app.get('/forms',			uRoutes.getForms );
 app.get('/invoice/:id',		checkAuth, uRoutes.getInvoiceByID );
 

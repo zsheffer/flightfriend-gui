@@ -1,3 +1,4 @@
+
 var passport		= require('passport'),
 	pass			= require("../config/pass"),
 	path			= require('path'),
@@ -80,6 +81,32 @@ exports.getForms			= function( req, res ){
 };
 
 
+exports.getClaim			= function( req, res ){
+	
+	res.render( 'claim' );
+	
+};
+
+exports.getClaims			= function( req, res ){
+	
+	return db.claimModel.find(function(err, claims) {
+		res.send( claims );
+	});
+	
+};
+
+exports.postClaimSubmit		= function( req, res ){
+
+	//console.log( '---------------------------------------------------------------' );
+	//console.log( req.body );
+	//console.log( '---------------------------------------------------------------' );
+	
+	
+	mail.submitClaim( req.body.email, req.body );
+	
+	res.send( 200 );	// tell the UI it was ok
+	
+}
 
 exports.getTokens	= function(req, res) {
 	return db.tokenModel.find(function(err, tokens) {
