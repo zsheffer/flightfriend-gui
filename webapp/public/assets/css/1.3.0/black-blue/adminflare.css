@@ -27,7 +27,7 @@
 }
 body {
   min-width: 1012px;
-  padding: 62px 0 0 0;
+  /* padding: 62px 0 0 0; */
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -3012,7 +3012,7 @@ body,
   body,
   .fluid-layout,
   .centered-layout {
-    padding: 62px 15px 0 102px;
+/*     padding: 62px 15px 0 102px; */
   }
   .container,
   #main-navbar .container,
@@ -3133,7 +3133,7 @@ body,
   }
   body,
   .centered-layout {
-    padding: 62px 15px 0 102px;
+/*     padding: 62px 15px 0 102px; */
   }
 }
 @media (max-width: 480px) {

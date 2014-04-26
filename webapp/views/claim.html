@@ -534,7 +534,7 @@
 
 	<%- include partials/header-alt.html %>
 
-	<div class="container">
+	<div class="container" style="padding-top: 62px;">
 		<section class="row-fluid" style="padding-top: 50px;">
 			<h3 class="box-header">Submit Your Claim</h3>
 			<div class="box">
@@ -1228,7 +1228,7 @@
 										
 										<div class="control-group">
 											<div class="controls">
-												<p class="help-block"></br></br>Please select the following, as appropriate. <b>(Checking either yes or no will have no bearing on DOT's handling of your complaint/inquiry/opinion.)</b></br></br>I agree to permit DOT to provide a copy of my complaint/inquiry/opinion and related documentation to the following entities, as appropriate:</p>
+												<p class="help-block"></br></br>Please select the following, as appropriate. <b>(Checking either yes or no will have no bearing on Department of Transportation's handling of your complaint/inquiry/opinion.)</b></br></br>I agree to permit Department of Transportation to provide a copy of my complaint/inquiry/opinion and related documentation to the following entities, as appropriate:</p>
 											</div>
 										</div>
 										
@@ -1244,7 +1244,7 @@
 										</div>
 										
 										<div class="control-group">
-											<label class="control-label" for="radioB">Federal agencies in the U.S. other than DOT (e.g., Transportation Security Administration)</label>
+											<label class="control-label" for="radioB">Federal agencies in the U.S. other than Department of Transportation (e.g., Transportation Security Administration)</label>
 											<div class="controls">
 												<label class="radio radio-custom"><input type="radio" name="Federal" value="No" id="radioB_No"><i class="radio"></i>No</label>
 												<label class="radio radio-custom"><input type="radio" name="Federal" value="Yes" id="radioB_Yes" checked><i class="radio"></i>Yes</label>
@@ -1348,6 +1348,9 @@
 
 	<%- include partials/footer-alt.html %>
 	<%- include partials/zendesk.js %>
+	<%- include partials/google.js %>
+	
+	<script src="js/fontsize.js"></script>
 	
 </body>
 </html>

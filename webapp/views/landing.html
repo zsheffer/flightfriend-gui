@@ -148,7 +148,7 @@
 		        #home2 #what .slides .slide.second .bg:after {
 		          background: rgba(5, 11, 29, 0.55); }
 		      #home2 #what .slides .slide.second h1.hero-text {
-		        text-align: right;
+		        text-align: center;
 		        font-family: "Lato", "Helvetica Neue", Arial;
 		        font-size: 37px;
 		        font-weight: 300;
@@ -170,7 +170,7 @@ width: 100%;
 		        font-family: "Lato", "Helvetica Neue", Arial;
 		        line-height: 29px;
 		        margin-top: 25px;
-		        text-align: right;
+		        text-align: center;
 		        color: black;
 		        font-weight: 400;
 		        font-size: 17px;
@@ -237,7 +237,7 @@ width: 100%;
 					</p>
 					<div class="cta">
 						<a href="/claim" class="button-outline">
-							TRY IT OUT
+							File a claim
 							<i class="fa fa-chevron-right"></i>
 						</a>
 					</div>
@@ -310,7 +310,7 @@ width: 100%;
 					<h1 class="hero-text">
 						What's Flight Friend
 					</h1>
-					<ul class="sub-text">
+					<ul class="sub-text" style="list-style-type: none;">
 						<li>Travel sucks these days. 22% of all flights each day in the United States are late. 22 million bags are lost every year. But, when the inevitable happens to us, nothing we can do to make it better, right? WRONG.</li>
 						<li>Turns out you’re entitled to more. For delayed, overbooked, and cancelled flights, as well as, bags lost by your airline, we can help you get the compensation you deserve.</li>
 						<li>Just submit an easy, seven-question claim in five minutes or less, and we’ll take care of all the annoying back and forth with the airlines. No hassle, no stress.</li>
@@ -327,7 +327,7 @@ width: 100%;
 			<div class="row header">
 				<div class="col-md-12">
 					<h2>Who's Eligible</h2>
-					<p>Let's have a broad explanation here</p>
+					<!-- <p>Let's have a broad explanation here</p> -->
 				</div>
 			</div>
 			<div class="row">
@@ -375,7 +375,7 @@ width: 100%;
 	
 	<div id="cta">
 		<a href="/claim">
-			Check If You Are Eligible
+			Check Your Eligibility
 		</a>
 	</div>
 	
@@ -383,8 +383,8 @@ width: 100%;
 		<div class="container">
 			<div class="row header">
 				<div class="col-md-12">
-					<h2>The Process</h2>
-					<p>Let's have a broad explanation here</p>
+					<h2>How it Works</h2>
+					<!-- <p>Let's have a broad explanation here</p> -->
 				</div>
 			</div>
 			<div class="row" style="position: relative;">
@@ -417,20 +417,6 @@ width: 100%;
 		<a href="/claim">
 			File A Claim
 		</a>
-	</div>
-
-	<div id="pricing" style="margin-bottom: -121px;">
-		<div class="container">
-			<div class="row header">
-				<h3>Compensation</h3>
-				<!-- <p>It's Simple</p> -->
-			</div>
-			<div class="header row">
-				<p>
-					We charge a flat $3 administrative fee when you submit a new claim to cover the ground work of processing your application with the FAA and the airlines.<br><br>If your claim is successful, then we will charge a 15% success fee on the compensation you get.<br><br>If your compensation is delivered in the form of miles or airline credits, we’ll charge an equivalent amount based on expert valuations each airline’s miles. See our FAQ for more information on specific conversion rates.
-				</p>
-			</div>
-		</div>
 	</div>
 
 <!--
@@ -530,6 +516,9 @@ width: 100%;
 	
 	<%- include partials/footer-alt.html %>
 	<%- include partials/zendesk.js %>
+	<%- include partials/google.js %>
+
+	<script src="js/fontsize.js"></script>
 	
 	<script src='js/jquery.easing.1.3.min.js'></script>
 	<script src="js/jquery.scrollto.js"></script>
