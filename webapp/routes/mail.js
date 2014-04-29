@@ -258,6 +258,9 @@ function claimEmail_support( _email, _claim, _claimID ){
 	    		"name" : "COMPENSATIONBEFORE",
 	    		"content" : _claim['Submitted-request-for-compensation-before']
 	    	},{
+	    		"name" : "ADDITIONAL",
+	    		"content" : _claim['additional']
+	    	},{
 	    		"name" : "STREET",
 	    		"content" : _claim['street']
 	    	},{
