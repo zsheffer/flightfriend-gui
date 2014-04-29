@@ -5,11 +5,11 @@
 <script type="text/javascript">
   if (typeof(Zenbox) !== "undefined") {
     Zenbox.init({
-      dropboxID:   "20137304",
+      dropboxID:   "20162100",
       url:         "https://flightfriend.zendesk.com",
-      tabTooltip:  "Questions",
-      tabImageURL: "https://assets.zendesk.com/external/zenbox/images/tab_questions_right.png",
-      tabColor:    "#78a500",
+      tabTooltip:  "Support",
+      tabImageURL: "https://assets.zendesk.com/external/zenbox/images/tab_support_right.png",
+      tabColor:    "#008000",
       tabPosition: "Right"
     });
   }
