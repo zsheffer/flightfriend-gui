@@ -228,6 +228,9 @@ function claimEmail_support( _email, _claim, _claimID ){
 	    		"name" : "claimID",
 	    		"content" : _claimID
 	    	},{
+	    		"name" : "TITLE",
+	    		"content" : _claim['title']
+	    	},{
 	    		"name" : "YOURFIRSTNAME",
 	    		"content" : _claim['yourFirstName']
 	    	},{
@@ -251,6 +254,9 @@ function claimEmail_support( _email, _claim, _claimID ){
 	    	},{
 	    		"name" : "AIRLINECODEOTHER",
 	    		"content" : _claim['airlinecodeother']
+	    	},{
+	    		"name" : "DATEPICKER",
+	    		"content" : _claim['datepicker']
 	    	},{
 	    		"name" : "ITINERARY",
 	    		"content" : _claim['flightitinerary']
