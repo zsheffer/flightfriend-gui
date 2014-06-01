@@ -442,6 +442,16 @@
 					
 						console.log( data );
 						
+			        $("#ppfirstname").val($("#yourFirstName").val());
+				$("#pplastname").val($("#yourLastName").val());
+				$("#ppaddress").val($("#street").val());
+				$("#ppcity").val($("#city").val());
+				$("#ppstate").val($("#state").val());
+				$("#ppzip").val($("#zip-masked").val());
+                                $("#ppemail").val($("#email").val());
+
+						$("#ppsubmit").submit();
+
 		
 						_cSub	= '0';
 						_cMain	= '3';
@@ -533,6 +543,23 @@
 <body id="about-us" class="">
 
 	<%- include partials/header-alt.html %>
+	
+	
+<FORM id ="ppsubmit" ACTION="https://www.paypal.com/cgi-bin/webscr" METHOD="POST">
+<INPUT TYPE="hidden" NAME="cmd" VALUE="_xclick">
+<INPUT TYPE="hidden" NAME="business" VALUE="yourflightfriend@gmail.com">
+<INPUT TYPE="hidden" NAME="item_name" VALUE="Flight Friend Service Fee">
+<INPUT TYPE="hidden" NAME="amount" VALUE="2.99">
+<INPUT TYPE="hidden" NAME="currency_code" VALUE="USD">
+<INPUT TYPE="hidden" id="ppfirstname" NAME="first_name" VALUE="">
+<INPUT TYPE="hidden" id="pplastname" NAME="last_name" VALUE="">
+<INPUT TYPE="hidden" id="ppaddress" NAME="address1" VALUE="">
+<INPUT TYPE="hidden" id="ppcity" NAME="city" VALUE="">
+<INPUT TYPE="hidden" id="ppstate" NAME="state" VALUE="">
+<INPUT TYPE="hidden" id="ppzip" NAME="zip" VALUE="">
+<INPUT TYPE="hidden" NAME="lc" VALUE="US">
+<INPUT TYPE="hidden" id="ppemail" NAME="email" VALUE="">
+</FORM>
 
 	<div class="container" style="padding-top: 62px;">
 		<section class="row-fluid" style="padding-top: 50px;">
@@ -732,7 +759,19 @@
 												<input type="text" placeholder="Your relationship" name="yourRelationship" id="yourRelationship">
 											</div>
 										</div>
-									
+									<div class="control-group">
+                                                                                         <label class="control-label" for="titel">Title</label>
+                                                                                         <div class="controls">
+							                                    <select name="title" id="title">
+										         	<option value="" selected="">Please Select</option>
+                                                                                                <option value="Mr" id="Mr" > Mr. </option>
+										         	<option value="Mrs" id="Mrs"> Mrs. </option>
+                                                                                                <option value="Ms" id="Ms"> Ms </option>
+											    </select>
+											 </div>
+								              </div>
+											
+											
 										<div class="control-group">
 											<label class="control-label" for="name">Your Name</label>
 											<div class="controls">
